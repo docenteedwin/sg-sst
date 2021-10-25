@@ -1,0 +1,80 @@
+{% extends 'facturacion/dashboard.html' %}
+{% block content %} 
+
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+
+    <h2>Gestion de productos</h2>
+    
+    </div>
+    </div>
+
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+<div class="panel panel-default">
+  <div class="panel-body">
+   
+    <form action="/agregar_productos" method='POST'>
+
+{% csrf_token %}    
+
+<p>
+
+<div class="input-group">
+  <label for="basic-url">Nombre</label>
+  <input type="text" class="form-control" name="nombre" value="{{nombre}}">
+</div>
+
+
+<input type="hidden" name="id" value="{{id}}"/>
+
+<p>
+
+<div class="input-group">
+  <label for="basic-url">Valor unitario</label>
+  <input type="text" class="form-control" name="vunitario" value="{{vunitario}}">
+</div>
+
+<p>
+
+<div class="input-group">
+  <label for="basic-url">Stock</label>
+  <input type="text" class="form-control" name="stoock" value="{{stoock}}">
+</div>
+
+    <p>  
+      <div class="btn-group" role="group" aria-label="btn">      
+        <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fa fa-pencil"></i> Guardar</button>
+
+        <a class="btn btn-primary" href="/listado_productos"> <i class="fa fa-trash"></i> Regresar</a>
+
+      </div>
+    
+    
+    </form>
+
+
+
+
+  </div>
+    </div>
+        
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'facturacion/dashboard.html' %}
+{% block content %}   
+  
+  <div class="row">
+    <div class="col-md-12">
+
+    <h2>Gestion de facturas</h2>
+    
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+    <a class="btn btn-success" href="/formulario_facturas/0"> <i class="fa fa-plus-square"></i>   Agregar Factura</a>
+        
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                <th>Consecutivo</th> 
+                <th>Fecha</th>
+                <th>Cliente</th>
+                {% comment %} <th>Telefono</th> {% endcomment %}
+                <th>Vence</th>
+                <th>Acciones</th>
+            
+            </tr>
+
+            {% for factura in lista_factura %}
+
+            <tr>
+                <td>{{factura.id}}</td>
+                <td>{{factura.fecha}}</td>
+                <td>{{factura.cliente}}</td>
+                {% comment %} <td>{{factura.telefono}}</td> {% endcomment %}
+                <td>{{factura.f_vence}}</td>
+                <td>
+                
+          <div class="btn-group" role="group" aria-label="btn">      
+        <a class="btn btn-warning" href="/formulario_facturas/1"> <i class="fa fa-pencil"></i> Actualizar</a>
+
+        <a class="btn btn-danger" href="/eliminar"> <i class="fa fa-trash"></i> Eliminar</a>
+
+       </div>
+
+              </td>
+            
+            </tr>
+        
+          {% endfor %}
+        
+        </table>
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+</div>
+
+{% endblock %}

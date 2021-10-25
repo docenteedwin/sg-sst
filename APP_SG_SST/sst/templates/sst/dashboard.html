@@ -195,37 +195,14 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <!-- Menu clientes -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Clientes
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/clientes" class="nav-link">
-                  <i class="far fa-list-alt nav-icon"></i>
-                  <p>Listado de clientes</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/formulario/0" class="nav-link">
-                  <i class="fas fa-user-plus nav-icon"></i>
-                  <p>Agregar clientes</p>
-                </a>
-              </li>
-            </ul>
-          </li>
 
-          <!-- Menu productos -->
+
+          <!-- Menu documentacion -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-boxes"></i>
               <p>
-                Productos
+                Documentacion
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -233,49 +210,54 @@
               <li class="nav-item">
                 <a href="/productos" class="nav-link">
                   <i class="far fa-list-alt nav-icon"></i>
-                  <p>Listado de productos</p>
+                  <p>Encargado del SG-SST</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/formulario_productos/0" class="nav-link">
                   <i class="fas fa-plus nav-icon"></i>
-                  <p>Agregar productos</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <!-- Menu facturas -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-invoice-dollar"></i>
-              <p>
-                Facturas
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/facturas" class="nav-link">
-                  <i class="far fa-list-alt nav-icon"></i>
-                  <p>Listado de facturas</p>
+                  <p>Configuración de empresa</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/formulario_facturas/0" class="nav-link">
+                <a href="/formulario_productos/0" class="nav-link">
                   <i class="fas fa-plus nav-icon"></i>
-                  <p>Agregar facturas</p>
+                  <p>Compromisos y responsabilidades </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/formulario_productos/0" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Aliados estratégicos </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/formulario_productos/0" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Política del SG-SST</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/formulario_productos/0" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Riesgos psicosociales</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/formulario_productos/0" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Plan de emergencia</p>
                 </a>
               </li>
             </ul>
           </li>
 
-          <!-- Menu configuracion -->
+          <!-- Menu usuarios -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Configuración
+                Usuarios
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -293,19 +275,28 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/grupos" class="nav-link">
+                <a href="/roles" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>Grupos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/formulario_grupos/0" class="nav-link">
-                  <i class="fas fa-user-plus nav-icon"></i>
-                  <p>Agregar grupos</p>
+                  <p>Roles</p>
                 </a>
               </li>
             </ul>
           </li>
+
+          <!-- Menu configuracion -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Configuración
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            </ul>
+          </li>
+
+
           <li class="nav-item">
                 <a href="/logout" class="nav-link">
                   <i class="fas fa-sign-out-alt nav-icon"></i>
@@ -377,7 +368,5 @@
 <script src="{% static '/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static '/dist/js/adminlte.min.js' %}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{% static '/dist/js/demo.js' %}"></script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+{% extends 'facturacion/dashboard.html' %}
+{% block content %}   
+   
+   
+<div class="row">
+  <div class="col-md-12">
+
+    <h2>Gestion de usuarios</h2>
+    
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+    <a class="btn btn-success" href="/formulario_usuarios/0"> <i class="fa fa-plus-square"></i>   Agregar usuarios</a>
+        
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Contraseña</th>
+                <th>Estado</th>
+                <th>Grupo</th>
+                <th>Acciones</th>
+
+            
+            </tr>
+
+            {% for usuario in lista_usuarios %}
+
+            <tr>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.apellidos}}</td>
+                <td>{{usuario.password}}</td>
+                <td>{{usuario.estado}}</td>
+                <td>{{usuario.grupo}}</td>
+                <td>
+                  
+                  <div class="btn-group" role="group" aria-label="btn"></div>
+                    <a class="btn btn-warning" href="/formulario_usuarios/{{usuario.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+
+                    <a class="btn btn-danger" href="/eliminar_usuarios/{{usuario.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                  </div>
+                  
+                </td>
+            
+            </tr>
+
+            {% endfor %}
+        
+        </table>
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+
+{% endblock %}

@@ -47,8 +47,8 @@ class permissions(models.Model):
 
 
 class permissions_role(models.Model):
-    id_permission = models.IntegerField(max_length=10)
-    id_rol = models.IntegerField(max_length=10)
+    id_permission = models.IntegerField()
+    id_rol = models.IntegerField()
 
     class Meta:
         verbose_name = "Permission_role"

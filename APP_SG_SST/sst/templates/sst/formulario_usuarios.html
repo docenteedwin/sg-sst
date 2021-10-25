@@ -1,0 +1,109 @@
+{% extends 'facturacion/dashboard.html' %}
+{% block content %} 
+
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+
+    <h2>Gestion de usuarios</h2>
+    
+    </div>
+    </div>
+
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+<div class="panel panel-default">
+  <div class="panel-body">
+   
+    <form action="/agregar_usuarios" method='POST'>
+
+{% csrf_token %}    
+
+<p></p>
+
+<div class="input-group">
+  <label for="basic-url">Email</label><br>
+  <input type="text" class="form-control" name="email" value="{{email}}">
+</div>
+
+
+<input type="hidden" name="id" value="{{id}}"/>
+
+<p></p>
+
+<div class="input-group">
+  <label for="basic-url">Nombre</label><br>
+  <input type="text" class="form-control" name="nombre" value="{{nombre}}">
+</div>
+
+<p></p>
+
+<div class="input-group">
+  <label for="basic-url">Apellidos</label><br>
+  <input type="text" class="form-control" name="apellidos" value="{{apellidos}}">
+</div>
+
+<p></p>
+
+<div class="input-group">
+  <label for="basic-url">Contraseña</label><br>
+  <input type="text" class="form-control" name="password" value="{{password}}">
+</div>
+
+<p></p>
+
+<div class="input-group">
+  <label for="basic-url">Estado</label><br>
+  <select class="form-control" name="estado">
+      <option value="activo">Activo</option>
+      <option value="inactivo">Inactivo</option>
+  </select>
+</div>
+
+<p></p>
+
+<div class="input-group">
+  <label for="basic-url">Grupo</label><br>
+  <select class="form-control" name="grupo">
+    {% for grupo in lista_grupos %}
+      <option value="{{grupo.nombre}}">{{grupo.nombre}}</option>
+    {% endfor %}
+  </select>
+</div>
+
+
+    <p></p>
+      <div class="btn-group" role="group" aria-label="btn">      
+        <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fa fa-pencil"></i> Guardar</button>
+
+        <a class="btn btn-primary" href="/"> <i class="fa fa-trash"></i> Regresar</a>
+
+      </div>
+    
+    
+    </form>
+
+
+
+
+  </div>
+    </div>
+        
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+</div>
+
+
+{% endblock %}
