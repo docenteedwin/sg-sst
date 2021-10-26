@@ -25,6 +25,4 @@ urlpatterns = [
     path('formulario_usuarios/<int:id>', views.formulario_usuarios, name='formulario_usuarios'),
     path('agregar_usuarios', views.agregar_usuarios, name='agregar_usuarios'),
 
-    # ROLES
-    path('roles',views.listado_roles, name='roles'),
 ]

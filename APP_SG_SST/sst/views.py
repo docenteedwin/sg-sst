@@ -36,13 +36,6 @@ def acceder(request):
         request.session['login_error'] = "Correo y/o clave invalidos"
         return redirect('/login')
 
-# ROLES
-
-def listado_roles(request):
-    roles = rol.objects.all()
-
-    return render(request, 'sst/listado_roles.html', {'lista_roles': roles})
-
 # DOCUMENTACION
 
 def formulario_encargado(request):
@@ -112,4 +105,3 @@ def agregar_usuarios(request):
 
     return render(request, 'sst/listado_usuarios.html', {'lista_usuarios': usuarios})
 
-    
