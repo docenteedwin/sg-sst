@@ -68,3 +68,48 @@ def formulario_plan_emergencia(request):
 
 # USUARIOS
 
+def listado_usuarios(request):
+    usuarios = users.objects.all()
+
+    return render(request, 'sst/listado_usuarios.html', {'lista_usuarios': usuarios})
+
+def formulario_usuarios(request, id):
+    roles = rol.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_usuario = users.objects.get(id=id)
+        variables_plantilla = {'id':id,'user_name':data_usuario.user_name, 'password':data_usuario.password, 'first_surname':data_usuario.first_surname, 'second_surname':data_usuario.second_surname, 'identity_number':data_usuario.identity_number, 'phone':data_usuario.phone, 'cellphone':data_usuario.cellphone, 'address':data_usuario.address, 'email':data_usuario.email, 'admin_status':data_usuario.admin_status, 'activity_status':data_usuario.activity_status, 'id_rol':data_usuario.id_rol, 'lista_roles':roles , 'action_text':"Actualizar usuario"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'user_name':'', 'password':'', 'first_surname':'', 'second_surname':'', 'identity_number':'', 'phone':'', 'cellphone':'', 'address':'', 'email':'', 'admin_status':'', 'activity_status':'', 'id_rol':'', 'lista_roles':roles , 'action_text':"Agregar usuario"}
+
+    return render(request, 'sst/formulario_usuarios.html', variables_plantilla)
+
+def agregar_usuarios(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+        nuevo_usuario = users(user_name=request.POST['user_name'], password=request.POST['password'], first_surname=request.POST['first_surname'], second_surname=request.POST['second_surname'], identity_number=request.POST['identity_number'], phone=request.POST['phone'], cellphone=request.POST['cellphone'], address=request.POST['address'], email=request.POST['email'], activity_status=request.POST['activity_status'], id_rol=request.POST['id_rol'])
+        nuevo_usuario.save()
+
+    else:
+        print("Actualiza")
+        data_usuario = users.objects.get(id=request.POST['id'])
+        data_usuario.user_name = request.POST['user_name']
+        data_usuario.password = request.POST['password']   
+        data_usuario.first_surname = request.POST['first_surname']
+        data_usuario.second_surname = request.POST['second_surname']
+        data_usuario.identity_number = request.POST['identity_number']
+        data_usuario.phone = request.POST['phone']
+        data_usuario.cellphone = request.POST['cellphone']
+        data_usuario.address = request.POST['address']
+        data_usuario.email = request.POST['email']
+        data_usuario.activity_status = request.POST['activity_status']
+        data_usuario.id_rol = request.POST['id_rol']
+        data_usuario.save()
+
+    usuarios = users.objects.all()
+
+    return render(request, 'sst/listado_usuarios.html', {'lista_usuarios': usuarios})
+
+    

@@ -25,14 +25,14 @@ class users(models.Model):
 
 
 class rol(models.Model):
-    rol_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     class Meta:
         verbose_name = "Rol"
         verbose_name_plural = "Roles"
 
     def __str__(self):
-        return self.rol_name
+        return self.name
 
 
 class permissions(models.Model):

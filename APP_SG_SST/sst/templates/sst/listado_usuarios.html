@@ -1,4 +1,4 @@
-{% extends 'facturacion/dashboard.html' %}
+{% extends 'sst/dashboard.html' %}
 {% block content %}   
    
    
@@ -13,7 +13,7 @@
 
     <div class="row">
     <div class="col-md-12">
-    <a class="btn btn-success" href="/formulario_usuarios/0"> <i class="fa fa-plus-square"></i>   Agregar usuarios</a>
+    <a class="btn btn-success" href="/formulario_usuarios/0"> <i class="fa fa-plus-square"></i>   Agregar usuario</a>
         
     </div>
     </div>
@@ -24,12 +24,12 @@
 
         <table class="table">
             <tr>
+                
+                <th>Username</th>
+                <th>First_surname</th>
+                <th>Second_surname</th>
                 <th>Email</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Contraseña</th>
-                <th>Estado</th>
-                <th>Grupo</th>
+                <th>Id rol</th>
                 <th>Acciones</th>
 
             
@@ -38,12 +38,11 @@
             {% for usuario in lista_usuarios %}
 
             <tr>
+                <td>{{usuario.user_name}}</td>
+                <td>{{usuario.first_surname}}</td>
+                <td>{{usuario.second_surname}}</td>
                 <td>{{usuario.email}}</td>
-                <td>{{usuario.nombre}}</td>
-                <td>{{usuario.apellidos}}</td>
-                <td>{{usuario.password}}</td>
-                <td>{{usuario.estado}}</td>
-                <td>{{usuario.grupo}}</td>
+                <td>{{usuario.id_rol}}</td>
                 <td>
                   
                   <div class="btn-group" role="group" aria-label="btn"></div>

@@ -1,4 +1,4 @@
-{% extends 'facturacion/dashboard.html' %}
+{% extends 'sst/dashboard.html' %}
 {% block content %} 
 
 
@@ -23,64 +23,101 @@
 
 {% csrf_token %}    
 
-<p></p>
+<br/>
 
-<div class="input-group">
-  <label for="basic-url">Email</label><br>
-  <input type="text" class="form-control" name="email" value="{{email}}">
+<div class="form-group">
+  <label for="basic-url">Nombre de usuario</label><br>
+  <input type="text" class="form-control" name="user_name" value="{{user_name}}" required />
 </div>
 
 
 <input type="hidden" name="id" value="{{id}}"/>
 
-<p></p>
+<br/>
 
-<div class="input-group">
-  <label for="basic-url">Nombre</label><br>
-  <input type="text" class="form-control" name="nombre" value="{{nombre}}">
-</div>
-
-<p></p>
-
-<div class="input-group">
-  <label for="basic-url">Apellidos</label><br>
-  <input type="text" class="form-control" name="apellidos" value="{{apellidos}}">
-</div>
-
-<p></p>
-
-<div class="input-group">
+<div class="form-group">
   <label for="basic-url">Contraseña</label><br>
-  <input type="text" class="form-control" name="password" value="{{password}}">
+  <input type="text" class="form-control" name="password" value="{{password}}" required />
 </div>
 
-<p></p>
+<br/>
 
-<div class="input-group">
-  <label for="basic-url">Estado</label><br>
-  <select class="form-control" name="estado">
+<div class="form-group">
+  <label for="basic-url">Nombres</label><br>
+  <input type="text" class="form-control" name="first_surname" value="{{first_surname}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Apellidos</label><br>
+  <input type="text" class="form-control" name="second_surname" value="{{second_surname}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Cedula</label><br>
+  <input type="text" class="form-control" name="identity_number" value="{{identity_number}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Teléfono</label><br>
+  <input type="text" class="form-control" name="phone" value="{{phone}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Celular</label><br>
+  <input type="text" class="form-control" name="cellphone" value="{{cellphone}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Dirección</label><br>
+  <input type="text" class="form-control" name="address" value="{{address}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Email</label><br>
+  <input type="text" class="form-control" name="email" value="{{email}}" required />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Estado de actividad</label><br>
+  <select class="form-control" name="activity_status">
+      <option value="">Seleccione un estado</option>
       <option value="activo">Activo</option>
       <option value="inactivo">Inactivo</option>
   </select>
 </div>
 
-<p></p>
+<br/>
 
-<div class="input-group">
-  <label for="basic-url">Grupo</label><br>
-  <select class="form-control" name="grupo">
-    {% for grupo in lista_grupos %}
-      <option value="{{grupo.nombre}}">{{grupo.nombre}}</option>
+<div class="form-group">
+  <label for="basic-url">Rol</label><br>
+  <select class="form-control" name="id_rol">
+    <option value="">Seleccione un rol</option>
+    {% for rol in lista_roles %}
+      <option value="{{rol.name}}">{{rol.name}}</option>
     {% endfor %}
   </select>
 </div>
 
 
-    <p></p>
-      <div class="btn-group" role="group" aria-label="btn">      
-        <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fa fa-pencil"></i> Guardar</button>
+    <br/>
+      <div class="form-group" role="group" aria-label="btn">      
+        <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>    Guardar</button>
 
-        <a class="btn btn-primary" href="/"> <i class="fa fa-trash"></i> Regresar</a>
+        <a class="btn btn-primary" href="/"> <i class="fa fa-arrow-left"></i> Regresar</a>
 
       </div>
     
