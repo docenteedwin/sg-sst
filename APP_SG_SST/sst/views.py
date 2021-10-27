@@ -103,5 +103,12 @@ def agregar_usuarios(request):
 
     usuarios = users.objects.all()
 
-    return render(request, 'sst/listado_usuarios.html', {'lista_usuarios': usuarios})
+    return redirect('/usuarios')
 
+def eliminar_usuarios(request ,id):
+    data_usuario = users.objects.get(id=id)
+    data_usuario.delete()
+
+    usuarios = users.objects.all()
+
+    return redirect('/usuarios')
