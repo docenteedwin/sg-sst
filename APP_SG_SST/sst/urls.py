@@ -30,6 +30,11 @@ urlpatterns = [
     path('usuarios', views.listado_usuarios, name='usuarios'),
     path('formulario_usuarios/<int:id>', views.formulario_usuarios, name='formulario_usuarios'),
     path('agregar_usuarios', views.agregar_usuarios, name='agregar_usuarios'),
+<<<<<<< HEAD
     
+=======
+    path('eliminar_usuarios/<int:id>', views.eliminar_usuarios, name='eliminar_usuarios'),
+
+>>>>>>> 5563a71320447b6cfaf81209ed147c13fffa533d
 
 ]

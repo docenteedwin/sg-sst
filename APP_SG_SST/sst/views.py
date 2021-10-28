@@ -103,8 +103,15 @@ def agregar_usuarios(request):
 
     usuarios = users.objects.all()
 
-    return render(request, 'sst/listado_usuarios.html', {'lista_usuarios': usuarios})
+    return redirect('/usuarios')
 
+def eliminar_usuarios(request ,id):
+    data_usuario = users.objects.get(id=id)
+    data_usuario.delete()
+
+    usuarios = users.objects.all()
+
+<<<<<<< HEAD
 # encargado
 
 def listado_encargado(request):
@@ -150,3 +157,6 @@ def agregar_usuarios(request):
     usuarios = users.objects.all()
 
     return render(request, 'sst/listado_usuarios.html', {'lista_usuarios': usuarios})
+=======
+    return redirect('/usuarios')
+>>>>>>> 5563a71320447b6cfaf81209ed147c13fffa533d
