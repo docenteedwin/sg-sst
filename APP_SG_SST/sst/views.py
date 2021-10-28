@@ -47,11 +47,24 @@ def formulario_configuracion(request):
 def formulario_compromisos(request):
     pass
 
+# ALIADOS
 def listado_aliados(request):
-    pass
+        aliados = aliado.objects.all()
 
-def formulario_aliados(request):
-    pass
+        return render(request, 'sst/listado_aliados.html', {'lista_aliados':aliados})
+
+def formulario_aliados(request, id):
+        aliados = aliado.objects.all()
+        if id !=0 : 
+            print ("Actualizar registro")
+            data_aliado = aliado.objects.get(id=id)
+            variables_plantilla = {'id':id,'name':data_aliado.name, 'nit':data_aliado.nit, 'arl':data_aliado.arl, 'pago_seguridad_social':data_aliado.pago_seguridad_social, 'seguridad_producto':data_aliado.seguridad_producto, 'cumplimiento_arl':data_aliado.cumplimiento_arl, 'lista_aliados':aliados , 'action_text':"Actualizar usuario"}
+
+        else:
+            print ("Nuevo registro")
+            variables_plantilla = {'id':0,'name':'', 'nit':'', 'arl':'', 'pago_seguridad_social':'', 'seguridad_producto':'', 'cumplimiento_arl':'', 'lista_aliados':aliados , 'action_text':"Agregar usuario"}
+
+        return render(request, 'sst/formulario_aliados.html', variables_plantilla)
 
 def formulario_riesgos(request):
     pass

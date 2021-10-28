@@ -57,3 +57,18 @@ class permissions_role(models.Model):
     def __str__(self):
         return self.id_rol
 
+class aliado(models.Model):
+    name = models.CharField(max_length=255)
+    nit = models.CharField(max_length=255)
+    arl = models.CharField(max_length=255)
+    pago_seguridad_social = models.CharField(max_length=255)
+    seguridad_producto = models.CharField(max_length=255)
+    cumplimiento_arl = models.CharField(max_length=255)
+
+
+    class Meta:
+        verbose_name = "Aliado"
+        verbose_name_plural = "Aliados"
+
+    def __str__(self):
+        return self.name

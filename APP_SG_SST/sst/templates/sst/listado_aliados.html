@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-12">
 
-    <h2>Gestion de usuarios</h2>
+    <h2>Control de proveedores</h2>
     
     </div>
     </div>
@@ -13,7 +13,7 @@
 
     <div class="row">
     <div class="col-md-12">
-    <a class="btn btn-success" href="/formulario_usuarios/0"> <i class="fa fa-plus-square"></i>   Agregar usuario</a>
+    <a class="btn btn-success" href="/formulario_aliados/0"> <i class="fa fa-plus-square"></i>   Agregar aliado</a>
         
     </div>
     </div>
@@ -28,27 +28,27 @@
                 <th>Nombre del proveedor</th>
                 <th>NIT</th>
                 <th>ARL</th>
-                <th>Seguridad social</th>
-                <th>Ficha de seguridad</th>
+                <th>Porcentaje de cumplimiento ARL</th>
+                <th>Pago de seguridad social</th>
                 <th>Acciones</th>
 
             
             </tr>
 
-            {% for usuario in lista_usuarios %}
+            {% for aliado in lista_aliados %}
 
             <tr>
-                <td>{{usuario.user_name}}</td>
-                <td>{{usuario.first_surname}}</td>
-                <td>{{usuario.second_surname}}</td>
-                <td>{{usuario.email}}</td>
-                <td>{{usuario.id_rol}}</td>
+                <td>{{aliado.name}}</td>
+                <td>{{aliado.nit}}</td>
+                <td>{{aliado.arl}}</td>
+                <td>{{aliado.cumplimiento_arl}}</td>
+                <td>{{aliado.pago_seguridad_social}}</td>
                 <td>
                   
                   <div class="btn-group" role="group" aria-label="btn"></div>
-                    <a class="btn btn-warning" href="/formulario_usuarios/{{usuario.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+                    <a class="btn btn-warning" href="/formulario_aliados/{{aliado.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
 
-                    <a class="btn btn-danger" href="/eliminar_usuarios/{{usuario.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                    <a class="btn btn-danger" href="/eliminar_aliados/{{aliado.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
                   </div>
                   
                 </td>

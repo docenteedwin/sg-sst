@@ -15,7 +15,7 @@ urlpatterns = [
     path('configuracion_empresa', views.formulario_configuracion, name='configuracion_empresa'),
     path('compromisos', views.formulario_compromisos, name='configuracion_empresa'),
     path('aliados', views.listado_aliados, name='aliados'),
-    path('formulario_aliados', views.formulario_aliados, name='formulario_aliados'),
+    path('formulario_aliados/<int:id>', views.formulario_aliados, name='formulario_aliados'),
     path('riesgos', views.formulario_riesgos, name='riesgos'),
     path('plan_emergencia', views.formulario_plan_emergencia, name='plan_emergencia'),
 
