@@ -15,8 +15,11 @@ urlpatterns = [
     # Encargado
     
     path('encargado', views.listado_encargado, name='encargado'),
-   # path('formulario_encargado/<int:id>', views.formulario_encargado, name='formulario_encargado'),
-   #  path('agregar_encargado', views.agregar_encargado, name='agregar_encargado'),
+    path('formulario_encargado/<int:id>', views.formulario_encargado, name='formulario_encargado'),
+    path('agregar_encargado', views.agregar_encargado, name='agregar_encargado'), 
+    
+    
+    # Configuracion   
     
     path('configuracion_empresa', views.formulario_configuracion, name='configuracion_empresa'),
     path('compromisos', views.formulario_compromisos, name='configuracion_empresa'),
@@ -30,11 +33,6 @@ urlpatterns = [
     path('usuarios', views.listado_usuarios, name='usuarios'),
     path('formulario_usuarios/<int:id>', views.formulario_usuarios, name='formulario_usuarios'),
     path('agregar_usuarios', views.agregar_usuarios, name='agregar_usuarios'),
-<<<<<<< HEAD
     
-=======
-    path('eliminar_usuarios/<int:id>', views.eliminar_usuarios, name='eliminar_usuarios'),
-
->>>>>>> 5563a71320447b6cfaf81209ed147c13fffa533d
 
 ]
