@@ -38,9 +38,6 @@ def acceder(request):
 
 # DOCUMENTACION
 
-def formulario_encargado(request):
-    pass
-
 def formulario_configuracion(request):
     pass
 
@@ -124,4 +121,26 @@ def eliminar_usuarios(request ,id):
 
     usuarios = users.objects.all()
 
-    return redirect('/usuarios')
+# ENCARGADO
+
+def listado_encargado(request):
+    encargados = users.objects.all()
+
+    return render(request, 'sst/listado_encargado.html', {'lista_encargado': encargados})
+
+def formulario_encargado(request, id):
+    roles = rol.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_encargado = users.objects.get(id=id)
+        variables_plantilla = {'id':id,'user_name':data_encargado.user_name, 'cedula':data_encargado.cedula, 'nivel_de_estudio':data_encargado.nivel_de_estudio, 'carga_PDF_Diploma':data_encargado.carga_PDF_Diploma,}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'user_name':'', 'password':'', 'first_surname':'', 'second_surname':'', 'identity_number':'', 'phone':'', 'cellphone':'', 'address':'', 'email':'', 'admin_status':'', 'activity_status':'', 'id_rol':'', 'lista_roles':roles , 'action_text':"Agregar usuario"}
+
+    return render(request, 'sst/formulario_usuarios.html', variables_plantilla)
+
+def agregar_encargado(request):
+    pass
+
