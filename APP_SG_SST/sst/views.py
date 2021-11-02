@@ -41,8 +41,48 @@ def acceder(request):
 def formulario_encargado(request):
     pass
 
-def formulario_configuracion(request):
-    pass
+def listado_empresa(request):
+    Empresa = empresa.objects.all()
+
+    return render(request, 'sst/listado_empresa.html', {'lista_empresas': Empresa})
+
+
+def formulario_empresa(request, id):
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_empresa = empresa.objects.get(id=id)
+        variables_plantilla = {'id':id,'nombre_empresa':data_empresa.nombre_empresa, 'nit':data_empresa.nit, 'georreferencia':data_empresa.georreferencia, 'actividad_economica':data_empresa.actividad_economica, 'nivel_riesgo':data_empresa.nivel_riesgo, 'cant_trabajadores':data_empresa.cant_trabajadores, 'naturaleza_juridica':data_empresa.naturaleza_juridica, 'telefono_contacto':data_empresa.telefono_contacto, 'email_contacto':data_empresa.email_contacto, 'tipo_empresa':data_empresa.tipo_empresa, 'action_text':"Actualizar empresa"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'nombre_empresa':'', 'nit':'', 'georreferencia':'', 'actividad_economica':'', 'nivel_riesgo':'', 'cant_trabajadores':'', 'naturaleza_juridica':'', 'telefono_contacto':'', 'email_contacto':'', 'tipo_empresa':'', 'action_text':"Agregar empresa"}
+
+    return render(request, 'sst/formulario_empresa.html', variables_plantilla)
+
+def agregar_empresa(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+        nueva_empresa = empresa(nombre_empresa=request.POST['nombre_empresa'], nit=request.POST['nit'], georreferencia=request.POST['georreferencia'], actividad_economica=request.POST['actividad_economica'], nivel_riesgo=request.POST['nivel_riesgo'], cant_trabajadores=request.POST['cant_trabajadores'], naturaleza_juridica=request.POST['naturaleza_juridica'], telefono_contacto=request.POST['telefono_contacto'], email_contacto=request.POST['email_contacto'], tipo_empresa=request.POST['tipo_empresa'])
+        nueva_empresa.save()
+
+    else:
+        print("Actualiza")
+        data_empresa = empresa.objects.get(id=request.POST['id'])
+        data_empresa.nombre_empresa = request.POST['nombre_empresa']
+        data_empresa.nit = request.POST['nit']   
+        data_empresa.georreferencia = request.POST['georreferencia']
+        data_empresa.actividad_economica = request.POST['actividad_economica']
+        data_empresa.nivel_riesgo = request.POST['nivel_riesgo']
+        data_empresa.cant_trabajadores = request.POST['cant_trabajadores']
+        data_empresa.naturaleza_juridica = request.POST['naturaleza_juridica']
+        data_empresa.telefono_contacto = request.POST['telefono_contacto']
+        data_empresa.email_contacto = request.POST['email_contacto']
+        data_empresa.tipo_empresa = request.POST['tipo_empresa']
+        data_empresa.save()
+
+    Empresa = empresa.objects.all()
+
+    return render(request, 'sst/listado_empresa.html', {'lista_empresas': Empresa})
 
 def formulario_compromisos(request):
     pass

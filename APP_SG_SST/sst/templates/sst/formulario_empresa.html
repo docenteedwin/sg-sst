@@ -1,0 +1,81 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %} 
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Gestion de empresas</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form action="/agregar_empresa" method='POST'>
+            {% csrf_token %}    
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Nombre de la empresa</label><br>
+              <input type="text" class="form-control" name="nombre_empresa" value="{{nombre_empresa}}" required />
+            </div>
+            <input type="hidden" name="id" value="{{id}}"/>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">NIT</label><br>
+              <input type="text" class="form-control" name="nit" value="{{nit}}" required />
+            </div>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Georreferenciación de la empresa</label><br>
+              <input type="text" class="form-control" name="georreferencia" value="{{georreferencia}}" />
+            </div>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Actividad Económica</label><br>
+              <input type="text" class="form-control" name="actividad_economica" value="{{actividad_economica}}" />
+            </div>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Nivel de riesgo</label><br>
+              <input type="text" class="form-control" name="nivel_riesgo" value="{{nivel_riesgo}}" />
+            </div>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Cantidad de trabajadores</label><br>
+              <input type="text" class="form-control" name="cant_trabajadores" value="{{cant_trabajadores}}" />
+            </div>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Naturaleza jurídica de la empresa</label><br>
+              <input type="text" class="form-control" name="naturaleza_juridica" value="{{naturaleza_juridica}}" />
+            </div>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Teléfonos de contacto</label><br>
+              <input type="text" class="form-control" name="telefono_contacto" value="{{telefono_contacto}}" />
+            </div>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Correo electrónico</label><br>
+              <input type="text" class="form-control" name="email_contacto" value="{{email_contacto}}" required />
+            </div>
+            <br/>
+            <div class="form-group">
+              <label for="basic-url">Tipo de empresa</label><br>
+              <input type="text" class="form-control" name="tipo_empresa" value="{{tipo_empresa}}" required />
+            </div>
+            <br/>
+            <div class="form-group" role="group" aria-label="btn">      
+              <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>    Guardar</button>
+              <a class="btn btn-primary" href="/"> <i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

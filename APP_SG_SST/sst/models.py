@@ -57,3 +57,23 @@ class permissions_role(models.Model):
     def __str__(self):
         return self.id_rol
 
+# Configuración de la empresa
+
+class empresa(models.Model):
+    nombre_empresa = models.CharField(max_length=255)
+    nit = models.CharField(max_length=255)
+    georreferencia = models.CharField(max_length=255)
+    actividad_economica = models.CharField(max_length=255)
+    nivel_riesgo = models.CharField(max_length=255)
+    cant_trabajadores = models.CharField(max_length=255)
+    naturaleza_juridica = models.CharField(max_length=255)
+    telefono_contacto = models.CharField(max_length=255)
+    email_contacto = models.CharField(max_length=255)
+    tipo_empresa = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = "Empresa"
+        verbose_name_plural = "Empresas"
+
+    def __str__(self):
+        return self.nombre_empresa

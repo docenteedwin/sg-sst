@@ -1,0 +1,44 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %}   
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Gestion de empresa</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <a class="btn btn-success" href="/formulario_empresa/0"> <i class="fa fa-plus-square"></i>   Agregar empresa</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>Nombre</th>
+        <th>Nit</th>
+        <th>Teléfonos de contacto</th>
+        <th>Correo electrónico</th>
+      </tr>
+      {% for empresa in lista_empresas %}
+      <tr>
+        <td>{{empresa.nombre_empresa}}</td>
+        <td>{{empresa.nit}}</td>
+        <td>{{empresa.telefono_contacto}}</td>
+        <td>{{empresa.email_contacto}}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="btn"></div>
+            <a class="btn btn-warning" href="/formulario_empresa/{{empresa.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+            <a class="btn btn-danger" href="/eliminar_usuarios/{{usuario.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

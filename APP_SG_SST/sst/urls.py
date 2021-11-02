@@ -12,7 +12,9 @@ urlpatterns = [
     # DOCUMENTACION
 
     path('encargado', views.formulario_encargado, name='encargado'),
-    path('configuracion_empresa', views.formulario_configuracion, name='configuracion_empresa'),
+    path('lista_empresa', views.listado_empresa, name='lista_empresa'),
+    path('formulario_empresa/<int:id>', views.formulario_empresa, name='formulario_empresa'),
+    path('agregar_empresa', views.agregar_empresa, name='agregar_empresa'),
     path('compromisos', views.formulario_compromisos, name='configuracion_empresa'),
     path('aliados', views.listado_aliados, name='aliados'),
     path('formulario_aliados', views.formulario_aliados, name='formulario_aliados'),
