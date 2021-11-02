@@ -87,11 +87,24 @@ def agregar_empresa(request):
 def formulario_compromisos(request):
     pass
 
+# ALIADOS
 def listado_aliados(request):
-    pass
+        aliados = aliado.objects.all()
 
-def formulario_aliados(request):
-    pass
+        return render(request, 'sst/listado_aliados.html', {'lista_aliados':aliados})
+
+def formulario_aliados(request, id):
+        aliados = aliado.objects.all()
+        if id !=0 : 
+            print ("Actualizar registro")
+            data_aliado = aliado.objects.get(id=id)
+            variables_plantilla = {'id':id,'name':data_aliado.name, 'nit':data_aliado.nit, 'arl':data_aliado.arl, 'pago_seguridad_social':data_aliado.pago_seguridad_social, 'seguridad_producto':data_aliado.seguridad_producto, 'cumplimiento_arl':data_aliado.cumplimiento_arl, 'lista_aliados':aliados , 'action_text':"Actualizar usuario"}
+
+        else:
+            print ("Nuevo registro")
+            variables_plantilla = {'id':0,'name':'', 'nit':'', 'arl':'', 'pago_seguridad_social':'', 'seguridad_producto':'', 'cumplimiento_arl':'', 'lista_aliados':aliados , 'action_text':"Agregar usuario"}
+
+        return render(request, 'sst/formulario_aliados.html', variables_plantilla)
 
 def formulario_riesgos(request):
     pass
@@ -143,5 +156,34 @@ def agregar_usuarios(request):
 
     usuarios = users.objects.all()
 
-    return render(request, 'sst/listado_usuarios.html', {'lista_usuarios': usuarios})
+    return redirect('/usuarios')
+
+def eliminar_usuarios(request ,id):
+    data_usuario = users.objects.get(id=id)
+    data_usuario.delete()
+
+    usuarios = users.objects.all()
+
+# ENCARGADO
+
+def listado_encargado(request):
+    encargados = users.objects.all()
+
+    return render(request, 'sst/listado_encargado.html', {'lista_encargado': encargados})
+
+def formulario_encargado(request, id):
+    roles = rol.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_encargado = users.objects.get(id=id)
+        variables_plantilla = {'id':id,'user_name':data_encargado.user_name, 'cedula':data_encargado.cedula, 'nivel_de_estudio':data_encargado.nivel_de_estudio, 'carga_PDF_Diploma':data_encargado.carga_PDF_Diploma,}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'user_name':'', 'password':'', 'first_surname':'', 'second_surname':'', 'identity_number':'', 'phone':'', 'cellphone':'', 'address':'', 'email':'', 'admin_status':'', 'activity_status':'', 'id_rol':'', 'lista_roles':roles , 'action_text':"Agregar usuario"}
+
+    return render(request, 'sst/formulario_usuarios.html', variables_plantilla)
+
+def agregar_encargado(request):
+    pass
 

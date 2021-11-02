@@ -1,0 +1,71 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %}   
+   
+   
+<div class="row">
+  <div class="col-md-12">
+
+    <h2>Encargado de SG-SST</h2>
+    
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+    <a class="btn btn-success" href="/formulario_encargado/0"> <i class="fa fa-plus-square"></i>   Agregar encargado</a>
+        
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                
+                <th>formulario_encargado_sg_sst</th>
+                <th>Cedula</th>
+                <th>Nivel de estudio</th>
+                <th>Carga PDF Diploma</th>
+                <th>certificado 50H</th>
+                <th>certificado salud</th>
+
+            
+            </tr>
+
+            {% for encargado in listado_encargado %}
+
+            <tr>
+                <td>{{ecargado.user_name}}</td>
+                <td>{{encargado.cedula}}</td>
+                <td>{{encargado.nivel_de_estudio}}</td>
+                <td>{{encargado.carga_PDF_Diploma}}</td>                
+                <td>
+                  
+                  <div class="btn-group" role="group" aria-label="btn"></div>
+                    <a class="btn btn-warning" href="/formulario_encargad/{{encargado.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+
+                    <a class="btn btn-danger" href="/eliminar_encargado/{{encargado.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                  </div>
+                  
+                </td>
+            
+            </tr>
+
+            {% endfor %}
+        
+        </table>
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+
+{% endblock %}

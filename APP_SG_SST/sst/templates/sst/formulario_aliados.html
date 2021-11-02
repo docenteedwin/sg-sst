@@ -1,0 +1,95 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %} 
+
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+
+    <h2>Control de proveedores</h2>
+    
+    </div>
+    </div>
+
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+<div class="panel panel-default">
+  <div class="panel-body">
+   
+    <form action="/agregar_aliados" method='POST'>
+
+{% csrf_token %}    
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Nombre del proveedor</label><br>
+  <input type="text" class="form-control" name="name" value="{{name}}" required />
+</div>
+
+
+<input type="hidden" name="id" value="{{id}}"/>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Nit</label><br>
+  <input type="text" class="form-control" name="nit" value="{{nit}}" required />
+</div>
+
+<br/>
+
+<div class="form-group">
+    <label for="arl">ARL</label>
+    <input type="file" class="form-control-file" id="arl">
+</div>
+
+<br/>
+
+<div class="form-group">
+    <label for="cumplimiento_arl">Porcentaje de cumplimiento ARL</label>
+    <input type="file" class="form-control-file" id="cumplimiento_arl">
+</div>
+
+<br/>
+
+<div class="form-group">
+    <label for="pago_seguridad_social">Pago de seguridad social</label>
+    <input type="file" class="form-control-file" id="pago_seguridad_social">
+</div>
+
+
+    <br/>
+      <div class="form-group" role="group" aria-label="btn">      
+        <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>    Guardar</button>
+
+        <a class="btn btn-primary" href="/"> <i class="fa fa-arrow-left"></i> Regresar</a>
+
+      </div>
+    
+    
+    </form>
+
+
+
+
+  </div>
+    </div>
+        
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+</div>
+
+
+{% endblock %}
