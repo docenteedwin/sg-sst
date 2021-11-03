@@ -25,4 +25,11 @@ urlpatterns = [
     path('formulario_usuarios/<int:id>', views.formulario_usuarios, name='formulario_usuarios'),
     path('agregar_usuarios', views.agregar_usuarios, name='agregar_usuarios'),
 
+    #POLITICAS
+
+    path('formulario_politicas/<int:id>', views.formulario_politicas, name='formulario_politicas'),
+    path('agregar_politicas', views.agregar_politicas, name='agregar_politicas'),
+    path('politicas', views.ver_politicas, name='politicas'),
+    path('eliminar_politicas/<int:id>', views.eliminar_politicas, name='eliminar_politicas'),
+
 ]

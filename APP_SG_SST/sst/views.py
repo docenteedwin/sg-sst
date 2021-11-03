@@ -105,3 +105,47 @@ def agregar_usuarios(request):
 
     return render(request, 'sst/listado_usuarios.html', {'lista_usuarios': usuarios})
 
+#POLITICAS SG-SST
+
+def formulario_politicas(request,id):
+    if id !=0 : 
+        politica = Politicas.objects.get(id=id)
+        variables_plantilla = {'id':id,'empresa':politica.empresa, 'nit':politica.nit, 'compromisos':politica.compromisos, 'requisitos_legales':politica.requisitos_legales, 'objetivos':politica.objetivos, 'comentarios':politica.comentarios, 'firma':politica.firma, 'fecha':politica.fecha}
+    else:
+        variables_plantilla = {'id':0,'empresa':'', 'nit':'', 'compromisos':'', 'requisitos_legales':'', 'objetivos':'', 'comentarios':'', 'firma':'', 'fecha':''}
+
+    return render(request, 'sst/formulario_politicas.html', variables_plantilla)
+
+def agregar_politicas(request):
+    if request.POST['id'] == '0':
+        politicas = Politicas(empresa=request.POST['empresa'], nit=request.POST['nit'], compromisos=request.POST['compromisos'], requisitos_legales=request.POST['requisitos_legales'], objetivos=request.POST['objetivos'], comentarios=request.POST['comentarios'], firma=request.POST['firma'], fecha=request.POST['fecha'])
+        politicas.save()
+
+    else:
+        politicas = Politicas.objects.get(id=request.POST['id'])
+        politicas.empresa = request.POST['empresa']
+        politicas.nit = request.POST['nit']   
+        politicas.compromisos = request.POST['compromisos']
+        politicas.requisitos_legales = request.POST['requisitos_legales']
+        politicas.objetivos = request.POST['objetivos']
+        politicas.comentarios = request.POST['comentarios']
+        politicas.firma = request.POST['firma']
+        politicas.fecha = request.POST['fecha']
+        politicas.save()
+
+    plts = Politicas.objects.all()
+
+    return render(request, 'sst/politicas.html', {'politicas': plts})
+
+def eliminar_politicas(request, id):
+    politica = Politicas.objects.filter(id=id).delete()
+    plts = Politicas.objects.all()
+    return render(request, 'sst/politicas.html', {'politicas': plts})
+
+def ver_politicas(request):
+    plts = Politicas.objects.all()
+    return render(request, 'sst/politicas.html', {'politicas': plts})
+
+def pdf_politicas(request, id):
+    politica = Politicas.objects.get(id=id)
+

@@ -57,3 +57,23 @@ class permissions_role(models.Model):
     def __str__(self):
         return self.id_rol
 
+#Política del SG-SST
+#Created: jose Luis Hoyos
+#Fecha: 29/oct/2021
+
+class Politicas(models.Model):
+    empresa = models.CharField(max_length=100)
+    nit = models.CharField(max_length=20)
+    compromisos = models.TextField()
+    requisitos_legales = models.TextField()
+    objetivos = models.TextField()
+    comentarios = models.TextField()
+    firma = models.CharField(max_length=30)
+    fecha = models.DateField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Politica"
+        verbose_name_plural = "Politicas"
+
+    def __str__(self):
+        return self.empresa

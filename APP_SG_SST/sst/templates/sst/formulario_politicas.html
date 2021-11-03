@@ -1,0 +1,77 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12"> 
+          <h2>Politicas SG-SST</h2>
+      </div>
+  </div>
+    
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form action="/agregar_politicas" method='POST'>
+            {% csrf_token %}   
+            <br/>
+            <input type="hidden" name="id" value="{{id}}"/>
+            
+            <div class="row">
+              <div class="col">
+                <label for="basic-url">Empresa</label><br>
+                <input type="text" class="form-control" name="empresa" value="{{empresa}}" required />
+              </div>
+              <div class="col">
+                <label for="basic-url">Nit</label><br>
+                <input type="text" class="form-control" name="nit" value="{{nit}}" required />
+              </div>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <label for="basic-url">Compromisos</label><br>
+                <textarea class="form-control" name="compromisos" id="compromisos" rows="3">{{compromisos}}</textarea>
+            </div>  
+            <br/>
+
+            <div class="form-group">
+              <label for="basic-url">Requisitos Legales</label><br>
+              <textarea class="form-control" name="requisitos_legales" id="requisitos_legales" rows="3" >{{requisitos_legales}}</textarea>
+            </div>
+            <br/>
+            
+            <div class="form-group">
+              <label for="basic-url">Objetivos</label><br>
+              <textarea class="form-control" name="objetivos" id="objetivos" rows="3">{{objetivos}}</textarea>
+            </div>                        
+            <br/>
+
+            <div class="form-group">
+              <label for="basic-url">Comentarios</label><br>
+              <textarea class="form-control" name="comentarios" id="comentarios" rows="3">{{comentarios}}</textarea>
+            </div>   
+            <br/>
+
+            <div class="row">
+              <div class="col">
+                <label for="basic-url">Firma</label><br>
+                <input type="text" class="form-control" name="firma" value="{{firma}}" />
+              </div>
+              <div class="col">
+                <label for="basic-url">Fecha</label><br>
+                <input type="date" class="form-control" name="fecha" value="{{fecha}}">
+              </div>
+            </div>
+            <br/>
+
+            <div class="form-group" role="group" aria-label="btn">      
+              <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>Guardar</button>
+              <a class="btn btn-primary" href="/"> <i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

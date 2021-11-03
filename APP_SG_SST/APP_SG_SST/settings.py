@@ -75,13 +75,18 @@ WSGI_APPLICATION = 'APP_SG_SST.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+
+        'default':{
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'sst',
         'USER': 'postgres',
-        'PASSWORD': 'python1A',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'M423KL4z',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT':'5432',
     }
 }
 
@@ -108,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'UTC'
 
@@ -116,7 +121,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
