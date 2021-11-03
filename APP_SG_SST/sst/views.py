@@ -115,20 +115,23 @@ def agregar_aliados(request):
         print("Nueva")
 
         # CARGA DE ARCHIVOS
-        arl_file = request.FILES['arl']
-        fs = FileSystemStorage()
-        filename = fs.save(arl_file.name, arl_file)
-        uploaded_file_url_arl = fs.url(filename)
+        if request.FILES['arl']:
+            arl_file = request.FILES['arl']
+            fs = FileSystemStorage()
+            filename = fs.save(arl_file.name, arl_file)
+            uploaded_file_url_arl = fs.url(filename)
 
-        cumplimiento_file = request.FILES['cumplimiento_arl']
-        fs = FileSystemStorage()
-        filename = fs.save(cumplimiento_file.name, cumplimiento_file)
-        uploaded_file_url_cumplimiento = fs.url(filename)
+        if request.FILES['cumplimiento_arl']:
+            cumplimiento_file = request.FILES['cumplimiento_arl']
+            fs = FileSystemStorage()
+            filename = fs.save(cumplimiento_file.name, cumplimiento_file)
+            uploaded_file_url_cumplimiento = fs.url(filename)
 
-        pago_file = request.FILES['pago_seguridad_social']
-        fs = FileSystemStorage()
-        filename = fs.save(pago_file.name, pago_file)
-        uploaded_file_url_pago = fs.url(filename)
+        if request.FILES['pago_seguridad_social']:
+            pago_file = request.FILES['pago_seguridad_social']
+            fs = FileSystemStorage()
+            filename = fs.save(pago_file.name, pago_file)
+            uploaded_file_url_pago = fs.url(filename)
 
         nuevo_aliado = aliado(name=request.POST['name'], nit=request.POST['nit'], arl=uploaded_file_url_arl, cumplimiento_arl=uploaded_file_url_cumplimiento, pago_seguridad_social=uploaded_file_url_pago)
         nuevo_aliado.save()

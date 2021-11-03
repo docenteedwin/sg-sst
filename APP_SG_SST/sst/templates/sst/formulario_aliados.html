@@ -44,21 +44,21 @@
 
 <div class="form-group">
     <label for="arl">ARL</label>
-    <input type="file" class="form-control-file" id="arl" name="arl">
+    <input type="file" class="form-control-file" id="arl" name="arl"/>
 </div>
 
 <br/>
 
 <div class="form-group">
     <label for="cumplimiento_arl">Porcentaje de cumplimiento ARL</label>
-    <input type="file" class="form-control-file" id="cumplimiento_arl" name="cumplimiento_arl">
+    <input type="file" class="form-control-file" id="cumplimiento_arl" name="cumplimiento_arl"/>
 </div>
 
 <br/>
 
 <div class="form-group">
     <label for="pago_seguridad_social">Pago de seguridad social</label>
-    <input type="file" class="form-control-file" id="pago_seguridad_social" name="pago_seguridad_social">
+    <input type="file" class="form-control-file" id="pago_seguridad_social" name="pago_seguridad_social"/>
 </div>
 
 
@@ -73,7 +73,9 @@
     
     </form>
 
-
+    {% if id %}
+     {% comment %} HACER TABLA {% endcomment %}
+    {% endif %}
 
 
   </div>
