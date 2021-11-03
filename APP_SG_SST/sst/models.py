@@ -93,3 +93,8 @@ class aliado(models.Model):
 
     def __str__(self):
         return self.name
+
+class documento(models.Model):
+    title = models.CharField(max_length = 200)
+    uploadedFile = models.FileField(upload_to = "media/")
+    dateTimeOfUpload = models.DateTimeField(auto_now = True)

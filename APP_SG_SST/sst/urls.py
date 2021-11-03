@@ -22,10 +22,14 @@ urlpatterns = [
       
     # DOCUMENTACION
     path('compromisos', views.formulario_compromisos, name='configuracion_empresa'),
-    path('aliados', views.listado_aliados, name='aliados'),
-    path('formulario_aliados/<int:id>', views.formulario_aliados, name='formulario_aliados'),
     path('riesgos', views.formulario_riesgos, name='riesgos'),
     path('plan_emergencia', views.formulario_plan_emergencia, name='plan_emergencia'),
+
+    # ALIADOS
+
+    path('aliados', views.listado_aliados, name='aliados'),
+    path('formulario_aliados/<int:id>', views.formulario_aliados, name='formulario_aliados'),
+    path('agregar_aliados', views.agregar_aliados, name='agregar_aliados'),
 
     # USUARIOS
 

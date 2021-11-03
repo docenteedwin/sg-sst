@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.files.storage import FileSystemStorage
 from .models import *
 
 # Create your views here.
@@ -38,7 +39,10 @@ def acceder(request):
 
 # DOCUMENTACION
 
-def formulario_encargado(request):
+def formulario_riesgos(request):
+    pass
+
+def formulario_plan_emergencia(request):
     pass
 
 def listado_empresa(request):
@@ -106,11 +110,61 @@ def formulario_aliados(request, id):
 
         return render(request, 'sst/formulario_aliados.html', variables_plantilla)
 
-def formulario_riesgos(request):
-    pass
+def agregar_aliados(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
 
-def formulario_plan_emergencia(request):
-    pass
+        # CARGA DE ARCHIVOS
+        arl_file = request.FILES['arl']
+        fs = FileSystemStorage()
+        filename = fs.save(arl_file.name, arl_file)
+        uploaded_file_url_arl = fs.url(filename)
+
+        cumplimiento_file = request.FILES['cumplimiento_arl']
+        fs = FileSystemStorage()
+        filename = fs.save(cumplimiento_file.name, cumplimiento_file)
+        uploaded_file_url_cumplimiento = fs.url(filename)
+
+        pago_file = request.FILES['pago_seguridad_social']
+        fs = FileSystemStorage()
+        filename = fs.save(pago_file.name, pago_file)
+        uploaded_file_url_pago = fs.url(filename)
+
+        nuevo_aliado = aliado(name=request.POST['name'], nit=request.POST['nit'], arl=uploaded_file_url_arl, cumplimiento_arl=uploaded_file_url_cumplimiento, pago_seguridad_social=uploaded_file_url_pago)
+        nuevo_aliado.save()
+
+    else:
+        print("Actualiza")
+        data_aliado = aliado.objects.get(id=request.POST['id'])
+
+        arl_file = request.FILES['arl']
+        fs = FileSystemStorage()
+        filename = fs.save(arl_file.name, arl_file)
+        uploaded_file_url_arl = fs.url(filename)
+
+        cumplimiento_file = request.FILES['cumplimiento_arl']
+        fs = FileSystemStorage()
+        filename = fs.save(cumplimiento_file.name, cumplimiento_file)
+        uploaded_file_url_cumplimiento = fs.url(filename)
+
+        pago_file = request.FILES['pago_seguridad_social']
+        fs = FileSystemStorage()
+        filename = fs.save(pago_file.name, pago_file)
+        uploaded_file_url_pago = fs.url(filename)
+
+        data_aliado.name = request.POST['name']
+        data_aliado.nit = request.POST['nit']   
+        data_aliado.arl = request.POST['arl']
+        data_aliado.pago_seguridad_social = request.POST['pago_seguridad_social']
+        data_aliado.seguridad_producto = request.POST['seguridad_producto']
+        data_aliado.cumplimiento_arl = request.POST['cumplimiento_arl']
+        data_aliado.save()
+        
+
+    aliados = aliado.objects.all()
+
+    return redirect('/aliados')
+
 
 # USUARIOS
 
