@@ -77,3 +77,45 @@ class Politicas(models.Model):
 
     def __str__(self):
         return self.empresa
+        
+# Configuración de la empresa
+
+class empresa(models.Model):
+    nombre_empresa = models.CharField(max_length=255)
+    nit = models.CharField(max_length=255)
+    georreferencia = models.CharField(max_length=255)
+    actividad_economica = models.CharField(max_length=255)
+    nivel_riesgo = models.CharField(max_length=255)
+    cant_trabajadores = models.CharField(max_length=255)
+    naturaleza_juridica = models.CharField(max_length=255)
+    telefono_contacto = models.CharField(max_length=255)
+    email_contacto = models.CharField(max_length=255)
+    tipo_empresa = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = "Empresa"
+        verbose_name_plural = "Empresas"
+
+    def __str__(self):
+        return self.nombre_empresa
+
+class aliado(models.Model):
+    name = models.CharField(max_length=255)
+    nit = models.CharField(max_length=255)
+    arl = models.CharField(max_length=255)
+    pago_seguridad_social = models.CharField(max_length=255)
+    seguridad_producto = models.CharField(max_length=255)
+    cumplimiento_arl = models.CharField(max_length=255)
+
+
+    class Meta:
+        verbose_name = "Aliado"
+        verbose_name_plural = "Aliados"
+
+    def __str__(self):
+        return self.name
+
+class documento(models.Model):
+    title = models.CharField(max_length = 200)
+    uploadedFile = models.FileField(upload_to = "media/")
+    dateTimeOfUpload = models.DateTimeField(auto_now = True)
