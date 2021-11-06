@@ -1,0 +1,104 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %} 
+
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+
+    <h2>Encargado de SG-SST</h2>
+    
+    </div>
+    </div>
+
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+<div class="panel panel-default">
+  <div class="panel-body">
+   
+    <form action="/agregar_encargado" method='POST'>
+
+{% csrf_token %}    
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Nombre y apellido completo</label><br>
+  <input type="text" class="form-control" name="user_name" value="{{user_name}}" required />
+</div>
+
+
+<input type="hidden" name="id" value="{{id}}"/>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Cedula</label><br>
+  <input type="text" class="form-control" name="cedula" value="{{cedula}}" required />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Nivel de estudio</label><br>
+  <input type="text" class="form-control" name="nivel_de_estudio" value="{{Nivel_de_estudio}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Carga PDF Diploma</label><br>
+  <input type="text" class="form-control" name="carga_PDF_Diploma" value="{{Carga_PDF_Diploma}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Carga PDF del certificado curso 50 horas</label><br>
+  <input type="file" class="form-control-file" name="Carga_PDF_certificado_seccional_de_salud" value="{{Carga_PDF_certificado_seccional_de_saludidentity_number}}" />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Carga PDF certificado seccional de salud</label><br>
+  <input type="file" class="form-control-file" name="Carga_PDF_certificado_seccional_de_salud" value="{{Carga_PDF_certificado_seccional_de_salud}}" />
+</div>
+
+<br/>
+<br/>
+
+    <br/>
+      <div class="form-group" role="group" aria-label="btn">      
+        <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i> Guardar</button>
+
+        <a class="btn btn-primary" href="/"> <i class="fa fa-arrow-left"></i> Regresar</a>
+
+      </div>
+    
+    
+    </form>
+
+
+
+
+  </div>
+    </div>
+        
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+</div>
+
+
+{% endblock %}

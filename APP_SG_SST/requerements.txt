@@ -1,1 +1,4 @@
 #dependencias
+
+#python.exe -m pip install django
+#python.exe -m pip install xhtml2pdf
