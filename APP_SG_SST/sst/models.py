@@ -115,6 +115,19 @@ class aliado(models.Model):
     def __str__(self):
         return self.name
 
+class producto_aliado(models.Model):
+    aliado = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255)
+    seguridad_producto = models.CharField(max_length=255)
+    
+    class Meta:
+        verbose_name = "Producto"
+        verbose_name_plural = "Productos"
+        
+    def __str__(self):
+        return self.nombre
+    
+
 class documento(models.Model):
     title = models.CharField(max_length = 200)
     uploadedFile = models.FileField(upload_to = "media/")

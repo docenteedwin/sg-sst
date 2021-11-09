@@ -150,16 +150,19 @@ def formulario_compromisos(request):
 
 # ALIADOS
 def listado_aliados(request):
-        aliados = aliado.objects.all()
+    aliados = aliado.objects.all()
 
-        return render(request, 'sst/listado_aliados.html', {'lista_aliados':aliados})
+    return render(request, 'sst/listado_aliados.html', {'lista_aliados':aliados})
 
 def formulario_aliados(request, id):
         aliados = aliado.objects.all()
+        productos = producto_aliado.objects.all().filter(aliado=id)
+        
         if id !=0 : 
             print ("Actualizar registro")
             data_aliado = aliado.objects.get(id=id)
-            variables_plantilla = {'id':id,'name':data_aliado.name, 'nit':data_aliado.nit, 'arl':data_aliado.arl, 'pago_seguridad_social':data_aliado.pago_seguridad_social, 'seguridad_producto':data_aliado.seguridad_producto, 'cumplimiento_arl':data_aliado.cumplimiento_arl, 'lista_aliados':aliados , 'action_text':"Actualizar usuario"}
+            data_producto = producto_aliado.objects.get(id=id)
+            variables_plantilla = {'id':id,'name':data_aliado.name, 'nit':data_aliado.nit, 'arl':data_aliado.arl, 'pago_seguridad_social':data_aliado.pago_seguridad_social, 'seguridad_producto':data_aliado.seguridad_producto, 'cumplimiento_arl':data_aliado.cumplimiento_arl,'lista_aliados':aliados ,'lista_productos':productos ,'action_text':"Actualizar usuario"}
 
         else:
             print ("Nuevo registro")
@@ -225,6 +228,63 @@ def agregar_aliados(request):
 
     return redirect('/aliados')
 
+def eliminar_aliados(request, id):
+    data_aliado = aliado.objects.get(id=id)
+    producto_aliado.objects.filter(aliado=id).delete()
+    data_aliado.delete()
+
+    return redirect('/aliados')
+
+def formulario_productos(request,id, aliado):
+    productos = producto_aliado.objects.all()
+    print(productos)
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_producto = producto_aliado.objects.get(id=id)
+        variables_plantilla = {'id':id,'aliado':aliado, 'nombre':data_producto.nombre, 'seguridad_producto':data_producto.seguridad_producto, 'lista_productos':productos , 'action_text':"Actualizar producto"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'aliado':aliado, 'nombre':'', 'seguridad_producto':'', 'lista_productos':productos , 'action_text':"Agregar producto"}
+
+    return render(request, 'sst/formulario_productos.html', variables_plantilla)
+    
+def agregar_productos(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+
+        # CARGA DE ARCHIVOS
+        if request.FILES['seguridad_producto']:
+            seguridad_producto_file = request.FILES['seguridad_producto']
+            fs = FileSystemStorage()
+            filename = fs.save(seguridad_producto_file.name, seguridad_producto_file)
+            uploaded_file_url_seguridad_producto = fs.url(filename)
+                        
+        nuevo_producto = producto_aliado(aliado=request.POST['aliado'], nombre=request.POST['nombre'], seguridad_producto=uploaded_file_url_seguridad_producto)
+        nuevo_producto.save()
+
+    else:
+        print("Actualiza")
+        data_producto = producto_aliado.objects.get(id=request.POST['id'])
+
+        arl_file = request.FILES['arl']
+        fs = FileSystemStorage()
+        filename = fs.save(arl_file.name, arl_file)
+        uploaded_file_url_seguridad_producto = fs.url(filename)
+
+        data_producto.aliado = request.POST['aliado']
+        data_producto.nombre = request.POST['nombre']   
+        data_producto.uploaded_file_url_seguridad_producto = request.POST['uploaded_file_url_seguridad_producto']
+        data_producto.save()
+        
+
+    productos = producto_aliado.objects.all()
+
+    return redirect('/formulario_aliados/'+request.POST['aliado'])
+
+def eliminar_usuarios(request, id):
+    pass
+
 
 # USUARIOS
 
@@ -277,6 +337,9 @@ def eliminar_usuarios(request ,id):
     data_usuario.delete()
 
     usuarios = users.objects.all()
+
+    return redirect('/usuarios')
+
 
 # ENCARGADO
 

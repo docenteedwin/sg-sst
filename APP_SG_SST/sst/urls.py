@@ -31,13 +31,17 @@ urlpatterns = [
     path('aliados', views.listado_aliados, name='aliados'),
     path('formulario_aliados/<int:id>', views.formulario_aliados, name='formulario_aliados'),
     path('agregar_aliados', views.agregar_aliados, name='agregar_aliados'),
+    path('eliminar_aliados/<int:id>', views.eliminar_aliados, name='eliminar_aliados'),
+    
+    path('formulario_productos/<int:id>/<int:aliado>', views.formulario_productos ,name='formulario_productos'),
+    path('agregar_productos', views.agregar_productos, name='agregar_productos'),
 
     # USUARIOS
 
     path('usuarios', views.listado_usuarios, name='usuarios'),
     path('formulario_usuarios/<int:id>', views.formulario_usuarios, name='formulario_usuarios'),
     path('agregar_usuarios', views.agregar_usuarios, name='agregar_usuarios'),
-    
+    path('eliminar_usuarios/<int:id>', views.eliminar_usuarios, name='eliminar_usuarios'),
 
     #POLITICAS
 

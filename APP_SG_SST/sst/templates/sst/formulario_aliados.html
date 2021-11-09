@@ -66,7 +66,7 @@
       <div class="form-group" role="group" aria-label="btn">      
         <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>    Guardar</button>
 
-        <a class="btn btn-primary" href="/"> <i class="fa fa-arrow-left"></i> Regresar</a>
+        <a class="btn btn-primary" href="/aliados"> <i class="fa fa-arrow-left"></i> Regresar</a>
 
       </div>
     
@@ -74,7 +74,37 @@
     </form>
 
     {% if id %}
-     {% comment %} HACER TABLA {% endcomment %}
+        <hr/>
+        <h2>Productos del aliado</h2>
+
+        <div class="row">
+        <div class="col-md-12">
+          <a class="btn btn-success" href="/formulario_productos/0/{{id}}"> <i class="fa fa-plus-square"></i>   Agregar producto</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <tr>
+              <th>Producto</th>
+              <th>Ficha de seguridad producto</th>
+            </tr>
+            {% for producto in lista_productos %}
+            <tr>
+              <td>{{producto.nombre}}</td>
+              <td><a href="{{producto.seguridad_producto}}">DESCARGAR SEGURIDAD PRODUCTO</a></td>
+              <td>
+                <div class="btn-group" role="group" aria-label="btn"></div>
+                  <a class="btn btn-warning" href="/formulario_producto/{{producto.id}}/{{id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+                  <a class="btn btn-danger" href="/eliminar_producto/{{producto.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
     {% endif %}
 
 
