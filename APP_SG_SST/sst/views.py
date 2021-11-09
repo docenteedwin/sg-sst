@@ -42,17 +42,71 @@ def acceder(request):
 
 # DOCUMENTACION
 
-def formulario_riesgos(request):
-    pass
+def listado_riesgos(request):
+    risk_emergency = riesgos_emergencia.objects.all()
+    return render(request, 'sst/listado_riesgos.html', {'lista_riskEmergency':risk_emergency})
 
-def formulario_plan_emergencia(request):
-    pass
+def formulario_riesgos(request,id):
+    risk_emergency = riesgos_emergencia.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_riskEmergency = riesgos_emergencia.objects.get(id=id)
+        variables_plantilla = {'id':id,'riesgosFile':data_riskEmergency.riesgosFile, 'emergenciaFile':data_riskEmergency.emergenciaFile, 'lista_riskEmergencys':risk_emergency, 'action_text':"Actualizar riesgos"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'riesgosFile':'', 'emergenciaFile':'', 'lista_riskEmergencys':risk_emergency, 'action_text':"Agregar riesgos"}
+
+    return render(request,'sst/formulario_riesgos.html', variables_plantilla)
+
+
+def agregar_riesgos(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+
+        # CARGA DE ARCHIVOS
+        if request.FILES['riesgosFile']:
+            riesgos_file = request.FILES['riesgosFile']
+            fs = FileSystemStorage()
+            filename = fs.save(riesgos_file.name, riesgos_file)
+            uploaded_file_url_riesgos = fs.url(filename)
+
+        if request.FILES['emergenciaFile']:
+            emergencia_file = request.FILES['emergenciaFile']
+            fs = FileSystemStorage()
+            filename = fs.save(emergencia_file.name, emergencia_file)
+            uploaded_file_url_emergencia = fs.url(filename)
+
+        nuevo_riskEmergency = riesgos_emergencia(riesgosFile=uploaded_file_url_riesgos, emergenciaFile=uploaded_file_url_emergencia)
+        nuevo_riskEmergency.save()
+
+    else:
+        print("Actualiza")
+        data_riskEmergency = riesgos_emergencia.objects.get(id=request.POST['id'])
+
+        riesgos_file = request.FILES['riesgosFile']
+        fs = FileSystemStorage()
+        filename = fs.save(riesgos_file.name, riesgos_file)
+        uploaded_file_url_riesgos = fs.url(filename)
+
+        emergencia_file = request.FILES['emergenciaFile']
+        fs = FileSystemStorage()
+        filename = fs.save(emergencia_file.name, emergencia_file)
+        uploaded_file_url_emergencia = fs.url(filename)
+
+        data_riskEmergency.riesgosFile = request.POST['riesgosFile']
+        data_riskEmergency.emergenciaFile = request.POST['emergenciaFile']
+        data_riskEmergency.save()
+
+    riskEmergencys = riesgos_emergencia.objects.all()
+
+    return redirect('/riesgos')
+
 
 def listado_empresa(request):
     Empresa = empresa.objects.all()
 
     return render(request, 'sst/listado_empresa.html', {'lista_empresas': Empresa})
-
 
 def formulario_empresa(request, id):
     if id !=0 : 

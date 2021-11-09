@@ -119,3 +119,7 @@ class documento(models.Model):
     title = models.CharField(max_length = 200)
     uploadedFile = models.FileField(upload_to = "media/")
     dateTimeOfUpload = models.DateTimeField(auto_now = True)
+
+class riesgos_emergencia(models.Model):
+    riesgosFile =models.CharField(max_length=255)
+    emergenciaFile =models.CharField(max_length=255)

@@ -1,0 +1,63 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %}   
+   
+   
+<div class="row">
+  <div class="col-md-12">
+
+    <h2>Riesgos psicosociales</h2>
+    
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+    <a class="btn btn-success" href="/formulario_riesgos/0"> <i class="fa fa-plus-square"></i>   Agregar riesgos</a>
+        
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+
+                <th>Riesgos psicosociales</th>
+                <th>Plan de emergencia</th>
+                <th>Acciones</th>
+
+            
+            </tr>
+
+            {% for riskEmergency in lista_riskEmergency %}
+
+            <tr>
+                <td><a href="{{riskEmergency.riesgosFile}}">DESCARGAR RIESGOS PSICOSOCIALES</a></td>
+                <td><a href="{{riskEmergency.emergenciaFile}}">DESCARGAR PLAN DE EMERGENCIA</a></td>
+                <td>
+                  
+                  <div class="btn-group" role="group" aria-label="btn"></div>
+                    <a class="btn btn-warning" href="/formulario_riesgos/{{riesgos_emergencia.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+                    <a class="btn btn-danger" href="/eliminar_aliados/{{aliado.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                  </div>
+                </td>
+            
+            </tr>
+            {% endfor %}
+        
+        </table>
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+
+{% endblock %}

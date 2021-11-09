@@ -22,8 +22,9 @@ urlpatterns = [
       
     # DOCUMENTACION
     path('compromisos', views.formulario_compromisos, name='configuracion_empresa'),
-    path('riesgos', views.formulario_riesgos, name='riesgos'),
-    path('plan_emergencia', views.formulario_plan_emergencia, name='plan_emergencia'),
+    path('riesgos', views.listado_riesgos, name='riesgos'),
+    path('formulario_riesgos/<int:id>', views.formulario_riesgos, name='formulario_riesgos'),
+    path('agregar_riesgos', views.agregar_riesgos, name='agregar_riesgos'),
 
     # ALIADOS
 
@@ -46,3 +47,6 @@ urlpatterns = [
     path('eliminar_politicas/<int:id>', views.eliminar_politicas, name='eliminar_politicas'),
     path('pdf_politicas/<int:id>', views.pdf_politicas, name='pdf_politicas'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
