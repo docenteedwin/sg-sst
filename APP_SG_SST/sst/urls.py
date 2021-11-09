@@ -35,7 +35,8 @@ urlpatterns = [
     
     path('formulario_productos/<int:id>/<int:aliado>', views.formulario_productos ,name='formulario_productos'),
     path('agregar_productos', views.agregar_productos, name='agregar_productos'),
-
+    path('eliminar_productos/<int:id>', views.eliminar_productos, name='eliminar_productos'),
+    
     # USUARIOS
 
     path('usuarios', views.listado_usuarios, name='usuarios'),
@@ -45,9 +46,9 @@ urlpatterns = [
 
     #POLITICAS
 
+    path('politicas', views.ver_politicas, name='politicas'),
     path('formulario_politicas/<int:id>', views.formulario_politicas, name='formulario_politicas'),
     path('agregar_politicas', views.agregar_politicas, name='agregar_politicas'),
-    path('politicas', views.ver_politicas, name='politicas'),
     path('eliminar_politicas/<int:id>', views.eliminar_politicas, name='eliminar_politicas'),
     path('pdf_politicas/<int:id>', views.pdf_politicas, name='pdf_politicas'),
 ]

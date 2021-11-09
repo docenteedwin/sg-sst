@@ -136,3 +136,4 @@ class documento(models.Model):
 class riesgos_emergencia(models.Model):
     riesgosFile =models.CharField(max_length=255)
     emergenciaFile =models.CharField(max_length=255)
+

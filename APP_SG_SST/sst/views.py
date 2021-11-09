@@ -42,6 +42,7 @@ def acceder(request):
 
 # DOCUMENTACION
 
+# RIESGOS Y EMERGENCIA
 def listado_riesgos(request):
     risk_emergency = riesgos_emergencia.objects.all()
     return render(request, 'sst/listado_riesgos.html', {'lista_riskEmergency':risk_emergency})
@@ -58,7 +59,6 @@ def formulario_riesgos(request,id):
         variables_plantilla = {'id':0,'riesgosFile':'', 'emergenciaFile':'', 'lista_riskEmergencys':risk_emergency, 'action_text':"Agregar riesgos"}
 
     return render(request,'sst/formulario_riesgos.html', variables_plantilla)
-
 
 def agregar_riesgos(request):
     if request.POST['id'] == '0':
@@ -102,7 +102,7 @@ def agregar_riesgos(request):
 
     return redirect('/riesgos')
 
-
+# EMPRESA
 def listado_empresa(request):
     Empresa = empresa.objects.all()
 
@@ -282,8 +282,13 @@ def agregar_productos(request):
 
     return redirect('/formulario_aliados/'+request.POST['aliado'])
 
-def eliminar_usuarios(request, id):
-    pass
+def eliminar_productos(request, id):
+    data_producto = producto_aliado.objects.get(id=id)
+    data_producto.delete()
+    
+    return redirect('/aliados')
+    
+    
 
 
 # USUARIOS
@@ -335,8 +340,6 @@ def agregar_usuarios(request):
 def eliminar_usuarios(request ,id):
     data_usuario = users.objects.get(id=id)
     data_usuario.delete()
-
-    usuarios = users.objects.all()
 
     return redirect('/usuarios')
 
