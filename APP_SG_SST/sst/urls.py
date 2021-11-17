@@ -51,6 +51,12 @@ urlpatterns = [
     path('agregar_politicas', views.agregar_politicas, name='agregar_politicas'),
     path('eliminar_politicas/<int:id>', views.eliminar_politicas, name='eliminar_politicas'),
     path('pdf_politicas/<int:id>', views.pdf_politicas, name='pdf_politicas'),
+    
+    # MODULO COMITES
+    path('copasst', views.listado_copasst, name='copasst'),
+    path('formulario_copasst/<int:id>', views.formulario_copasst, name='formulario_copasst'),
+    
+    
 ]
 
 if settings.DEBUG:

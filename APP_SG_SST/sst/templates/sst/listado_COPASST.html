@@ -1,0 +1,71 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %}   
+   
+   
+<div class="row">
+  <div class="col-md-12">
+
+    <h2>COPASST</h2>
+    
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+    <a class="btn btn-success" href="/formulario_copasst/0"> <i class="fa fa-plus-square"></i>   Agregar usuario</a>
+        
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cedula</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Cargo</th>
+                <th>Acciones</th>
+            </tr>
+
+            {% for miembro in lista_miembros %}
+
+            <tr>
+                <td>{{miembro.nombre}}</td>
+                <td>{{miembro.apellido}}</td>
+                <td>{{miembro.cedula}}</td>
+                <td>{{miembro.email}}</td>
+                <td>{{miembro.telefono}}</td>
+                <td>{{miembro.cargo}}</td>
+                <td>
+                  
+                  <div class="btn-group" role="group" aria-label="btn"></div>
+                    <a class="btn btn-warning" href="/formulario_usuarios/{{usuario.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+
+                    <a class="btn btn-danger" href="/eliminar_usuarios/{{usuario.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                  </div>
+                  
+                </td>
+            
+            </tr>
+
+            {% endfor %}
+        
+        </table>
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+
+{% endblock %}

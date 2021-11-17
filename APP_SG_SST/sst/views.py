@@ -423,3 +423,28 @@ def pdf_politicas(request, id,*args, **kwargs):
     pdf = render_to_pdf('sst/pdf_politicas.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
     #return render(request, 'sst/pdf_politicas.html', {'politicas': plts})
+    
+    
+# MODULO COMITES
+
+# COPASST
+def listado_copasst(request):
+    miembros = copasst.objects.all()
+
+    return render(request, 'sst/listado_COPASST.html', {'lista_miembros': miembros})
+
+def formulario_copasst(request, id):
+    miembros = copasst.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_miembro = users.objects.get(id=id)
+        variables_plantilla = {'id':id,'nombre':data_miembro.nombre, 'apellido':data_miembro.apellido, 'cedula':data_miembro.cedula, 'email':data_miembro.email, 'telefono':data_miembro.telefono, 'cargo':data_miembro.cargo, 'lista_miembros':miembros , 'action_text':"Actualizar miembro"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'nombre':'', 'apellido':'', 'cedula':'', 'email':'', 'telefono':'', 'cargo':'', 'lista_miembros':miembros , 'action_text':"Agregar miembro"}
+
+    return render(request, 'sst/formulario_COPASST.html', variables_plantilla)
+
+
+
