@@ -287,9 +287,6 @@ def eliminar_productos(request, id):
     data_producto.delete()
     
     return redirect('/aliados')
-    
-    
-
 
 # USUARIOS
 
@@ -342,7 +339,6 @@ def eliminar_usuarios(request ,id):
     data_usuario.delete()
 
     return redirect('/usuarios')
-
 
 # ENCARGADO
 
@@ -423,3 +419,13 @@ def pdf_politicas(request, id,*args, **kwargs):
     pdf = render_to_pdf('sst/pdf_politicas.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
     #return render(request, 'sst/pdf_politicas.html', {'politicas': plts})
+
+# Comites
+
+# COCOLA
+def listado_cocola(request):
+    pass
+
+def agregar_miembro_cocla(request):
+    pass
+
