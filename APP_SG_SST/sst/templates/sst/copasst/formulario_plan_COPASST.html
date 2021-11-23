@@ -1,0 +1,81 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %} 
+
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+
+    <h2>Plan anual COPASST</h2>
+    
+    </div>
+    </div>
+
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+<div class="panel panel-default">
+  <div class="panel-body">
+   
+    <form action="/agregar_plan_copasst" method='POST'>
+
+{% csrf_token %}    
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Nombre</label><br>
+  <input type="text" class="form-control" name="nombre" value="{{nombre}}" required />
+</div>
+
+
+<input type="hidden" name="id" value="{{id}}"/>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Fecha</label><br>
+  <input type="date" class="form-control" name="fecha" value="{{fecha}}" required />
+</div>
+
+<br/>
+
+<div class="form-group">
+  <label for="basic-url">Descripcion</label><br>
+  <input type="text" class="form-control" name="descripcion" value="{{descripcion}}" />
+</div>
+
+
+    <br/>
+      <div class="form-group" role="group" aria-label="btn">      
+        <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>    Guardar</button>
+
+        <a class="btn btn-primary" href="/plan_copasst"> <i class="fa fa-arrow-left"></i> Regresar</a>
+
+      </div>
+    
+    
+    </form>
+
+
+
+
+  </div>
+    </div>
+        
+
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+</div>
+
+
+{% endblock %}
