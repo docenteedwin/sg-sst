@@ -145,6 +145,12 @@ def agregar_empresa(request):
 
     return render(request, 'sst/listado_empresa.html', {'lista_empresas': Empresa})
 
+def eliminar_empresa(request, id):
+    data_empresa = empresa.objects.get(id=id)
+    data_empresa.delete()
+
+    return redirect('/lista_empresa')
+
 def formulario_compromisos(request):
     pass
 
@@ -420,12 +426,69 @@ def pdf_politicas(request, id,*args, **kwargs):
     return HttpResponse(pdf, content_type='application/pdf')
     #return render(request, 'sst/pdf_politicas.html', {'politicas': plts})
 
-# Comites
+# MODULO COMITES
 
-# COCOLA
+# COPASST
+def listado_copasst(request):
+    miembros = copasst.objects.all()
+
+    return render(request, 'sst/listado_COPASST.html', {'lista_miembros': miembros})
+
+def formulario_copasst(request, id):
+    miembros = copasst.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_miembro = users.objects.get(id=id)
+        variables_plantilla = {'id':id,'nombre':data_miembro.nombre, 'apellido':data_miembro.apellido, 'cedula':data_miembro.cedula, 'email':data_miembro.email, 'telefono':data_miembro.telefono, 'cargo':data_miembro.cargo, 'lista_miembros':miembros , 'action_text':"Actualizar miembro"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'nombre':'', 'apellido':'', 'cedula':'', 'email':'', 'telefono':'', 'cargo':'', 'lista_miembros':miembros , 'action_text':"Agregar miembro"}
+
+    return render(request, 'sst/formulario_COPASST.html', variables_plantilla)
+
+#  COCOLA
 def listado_cocola(request):
-    pass
+    miembros = cocola.objects.all()
 
-def agregar_miembro_cocla(request):
-    pass
+    return render(request, 'sst/listado_COCOLA.html', {'lista_miembros':miembros})
 
+def formulario_cocola(request, id):
+    miembros = cocola.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_miembro = cocola.objects.get(id=id)
+        variables_plantilla = {'id':id,'nombre':data_miembro.nombre, 'apellido':data_miembro.apellido, 'cedula':data_miembro.cedula, 'email':data_miembro.email, 'telefono':data_miembro.telefono, 'cargo':data_miembro.cargo, 'lista_miembros':miembros , 'action_text':"Actualizar miembro"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'nombre':'', 'apellido':'', 'cedula':'', 'email':'', 'telefono':'', 'cargo':'', 'lista_miembros':miembros , 'action_text':"Agregar miembro"}
+
+    return render(request, 'sst/formulario_COCOLA.html', variables_plantilla)
+
+def agregar_cocola(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+        nuevo_cocola = cocola(nombre=request.POST['nombre'], apellido=request.POST['apellido'], cedula=request.POST['cedula'], email=request.POST['email'], telefono=request.POST['telefono'], cargo=request.POST['cargo'])
+        nuevo_cocola.save()
+
+    else:
+        print("Actualiza")
+        data_cocola = cocola.objects.get(id=request.POST['id'])
+        data_cocola.nombre = request.POST['nombre']
+        data_cocola.apellido = request.POST['apellido']   
+        data_cocola.cedula = request.POST['cedula']
+        data_cocola.email = request.POST['email']
+        data_cocola.telefono = request.POST['telefono']
+        data_cocola.cargo = request.POST['cargo']
+        data_cocola.save()
+
+    miembros = cocola.objects.all()
+
+    return redirect('/cocola')
+
+def eliminar_cocola(request, id):
+    data_cocola = cocola.objects.get(id=id)
+    data_cocola.delete()
+
+    return redirect('/cocola')

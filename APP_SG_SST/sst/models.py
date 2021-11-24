@@ -137,3 +137,20 @@ class riesgos_emergencia(models.Model):
     riesgosFile =models.CharField(max_length=255)
     emergenciaFile =models.CharField(max_length=255)
 
+# MODULO COMITES
+
+class copasst(models.Model):
+    nombre = models.CharField(max_length=255)
+    apellido = models.CharField(max_length=255)
+    cedula = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    telefono = models.CharField(max_length=255)
+    cargo = models.CharField(max_length=255)
+
+class cocola(models.Model):
+    nombre = models.CharField(max_length=255)
+    apellido = models.CharField(max_length=255)
+    cedula = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    telefono = models.CharField(max_length=255)
+    cargo = models.CharField(max_length=255)

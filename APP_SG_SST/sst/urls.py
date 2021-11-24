@@ -9,10 +9,13 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('acceder', views.acceder, name='acceder'),
 
+    # DOCUMENTACION
+
     # Empresa 
     path('lista_empresa', views.listado_empresa, name='lista_empresa'),
     path('formulario_empresa/<int:id>', views.formulario_empresa, name='formulario_empresa'),
     path('agregar_empresa', views.agregar_empresa, name='agregar_empresa'),
+    path('eliminar_empresa/<int:id>', views.eliminar_empresa, name='eliminar_empresa'),
     
     # Encargado
     
@@ -20,8 +23,9 @@ urlpatterns = [
     path('formulario_encargado/<int:id>', views.formulario_encargado, name='formulario_encargado'),
     path('agregar_encargado', views.agregar_encargado, name='agregar_encargado'), 
       
-    # DOCUMENTACION
     path('compromisos', views.formulario_compromisos, name='configuracion_empresa'),
+
+    # Riesgo psicosocial y plan de emergencia
     path('riesgos', views.listado_riesgos, name='riesgos'),
     path('formulario_riesgos/<int:id>', views.formulario_riesgos, name='formulario_riesgos'),
     path('agregar_riesgos', views.agregar_riesgos, name='agregar_riesgos'),
@@ -51,6 +55,18 @@ urlpatterns = [
     path('agregar_politicas', views.agregar_politicas, name='agregar_politicas'),
     path('eliminar_politicas/<int:id>', views.eliminar_politicas, name='eliminar_politicas'),
     path('pdf_politicas/<int:id>', views.pdf_politicas, name='pdf_politicas'),
+    
+    # MODULO COMITES
+    #COPASST
+    path('copasst', views.listado_copasst, name='copasst'),
+    path('formulario_copasst/<int:id>', views.formulario_copasst, name='formulario_copasst'),
+
+    #COCOLA
+    path('cocola', views.listado_cocola, name='cocola'),
+    path('formulario_cocola/<int:id>', views.formulario_cocola, name='formulario_cocola'),
+    path('agregar_cocola', views.agregar_cocola, name='agregar_cocola'),
+    path('eliminar_cocola/<int:id>', views.eliminar_cocola, name='eliminar_cocola')
+    
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,65 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %} 
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Gestion de usuarios</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="/agregar_cocola" method='POST'>
+                        {% csrf_token %}
+                        <br/>
+                        <div class="form-group">
+                            <label for="basic-url">Nombre</label><br>
+                            <input type="text" class="form-control" name="nombre" value="{{nombre}}" required />
+                        </div>
+                        <input type="hidden" name="id" value="{{id}}"/>
+                        <br/>
+                        <div class="form-group">
+                            <label for="basic-url">Apellido</label><br>
+                            <input type="text" class="form-control" name="apellido" value="{{apellido}}" required />
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label for="basic-url">Cedula</label><br>
+                            <input type="text" class="form-control" name="cedula" value="{{cedula}}" />
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label for="basic-url">Email</label><br>
+                            <input type="text" class="form-control" name="email" value="{{email}}" />
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label for="basic-url">Telefono</label><br>
+                            <input type="text" class="form-control" name="telefono" value="{{telefono}}" />
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label for="basic-url">Cargo</label><br>
+                            <select class="form-control" name="cargo">
+                                <option value="">Seleccione un cargo</option>
+                                <option value="Presidente">Presidente</option>
+                                <option value="Secretario">Secretario</option>
+                                <option value="Miembro">Miembro</option>
+                                <option value="Suplente">Suplente</option>
+                            </select>
+                        </div>
+                        <br/>
+                        <div class="form-group" role="group" aria-label="btn">      
+                            <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>    Guardar</button>
+                            <a class="btn btn-primary" href="/cocola"> <i class="fa fa-arrow-left"></i> Regresar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
