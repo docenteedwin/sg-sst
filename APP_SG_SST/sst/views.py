@@ -432,20 +432,90 @@ def pdf_politicas(request, id,*args, **kwargs):
 def listado_copasst(request):
     miembros = copasst.objects.all()
 
-    return render(request, 'sst/listado_COPASST.html', {'lista_miembros': miembros})
+    return render(request, 'sst/copasst/listado_COPASST.html', {'lista_miembros': miembros})
 
 def formulario_copasst(request, id):
     miembros = copasst.objects.all()
     if id !=0 : 
         print ("Actualizar registro")
-        data_miembro = users.objects.get(id=id)
+        data_miembro = copasst.objects.get(id=id)
         variables_plantilla = {'id':id,'nombre':data_miembro.nombre, 'apellido':data_miembro.apellido, 'cedula':data_miembro.cedula, 'email':data_miembro.email, 'telefono':data_miembro.telefono, 'cargo':data_miembro.cargo, 'lista_miembros':miembros , 'action_text':"Actualizar miembro"}
 
     else:
         print ("Nuevo registro")
         variables_plantilla = {'id':0,'nombre':'', 'apellido':'', 'cedula':'', 'email':'', 'telefono':'', 'cargo':'', 'lista_miembros':miembros , 'action_text':"Agregar miembro"}
 
-    return render(request, 'sst/formulario_COPASST.html', variables_plantilla)
+    return render(request, 'sst/copasst/formulario_COPASST.html', variables_plantilla)
+
+def agregar_copasst(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+        nuevo_miembro = copasst(nombre=request.POST['nombre'], apellido=request.POST['apellido'], cedula=request.POST['cedula'], email=request.POST['email'], telefono=request.POST['telefono'], cargo=request.POST['cargo'])
+        nuevo_miembro.save()
+
+    else:
+        print("Actualiza")
+        data_miembro = copasst.objects.get(id=request.POST['id'])
+        data_miembro.nombre = request.POST['nombre']
+        data_miembro.apellido = request.POST['apellido']   
+        data_miembro.cedula = request.POST['cedula']
+        data_miembro.email = request.POST['email']
+        data_miembro.telefono = request.POST['telefono']
+        data_miembro.cargo = request.POST['cargo']
+        data_miembro.save()
+
+    miembros = copasst.objects.all()
+
+    return redirect('/copasst')
+
+def eliminar_copasst(request ,id):
+    data_miembro = copasst.objects.get(id=id)
+    data_miembro.delete()
+
+    return redirect('/copasst')
+
+def listado_plan_copasst(request):
+    planes = plan_copasst.objects.all()
+
+    return render(request, 'sst/copasst/listado_plan_COPASST.html', {'lista_planes': planes})
+
+def formulario_plan_copasst(request, id):
+    planes = plan_copasst.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_plan = plan_copasst.objects.get(id=id)
+        variables_plantilla = {'id':id,'nombre':data_plan.nombre, 'fecha':data_plan.fecha, 'descripcion':data_plan.descripcion, 'lista_planes':planes , 'action_text':"Actualizar plan"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0,'nombre':'', 'fecha':'', 'descripcion':'', 'lista_planes':planes , 'action_text':"Agregar plan"}
+
+    return render(request, 'sst/copasst/formulario_plan_COPASST.html', variables_plantilla)
+
+def agregar_plan_copasst(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+        nuevo_plan = plan_copasst(nombre=request.POST['nombre'], fecha=request.POST['fecha'], descripcion=request.POST['descripcion'])
+        nuevo_plan.save()
+
+    else:
+        print("Actualiza")
+        data_plan = plan_copasst.objects.get(id=request.POST['id'])
+        data_plan.nombre = request.POST['nombre']
+        data_plan.fecha = request.POST['fecha']   
+        data_plan.descripcion = request.POST['descripcion']
+
+        data_plan.save()
+
+    planes = plan_copasst.objects.all()
+
+    return redirect('/plan_copasst')
+
+def eliminar_plan_copasst(request, id):
+    data_plan = plan_copasst.objects.get(id=id)
+    data_plan.delete()
+
+    return redirect('/plan_copasst')
 
 #  COCOLA
 def listado_cocola(request):
@@ -490,5 +560,4 @@ def agregar_cocola(request):
 def eliminar_cocola(request, id):
     data_cocola = cocola.objects.get(id=id)
     data_cocola.delete()
-
     return redirect('/cocola')

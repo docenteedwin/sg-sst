@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 # Create your models here.
 
@@ -147,6 +149,11 @@ class copasst(models.Model):
     telefono = models.CharField(max_length=255)
     cargo = models.CharField(max_length=255)
 
+class plan_copasst(models.Model):
+    nombre = models.CharField(max_length=255)
+    fecha = models.DateField(default=timezone.now())
+    descripcion = models.CharField(max_length=255)
+    
 class cocola(models.Model):
     nombre = models.CharField(max_length=255)
     apellido = models.CharField(max_length=255)
@@ -154,3 +161,4 @@ class cocola(models.Model):
     email = models.CharField(max_length=255)
     telefono = models.CharField(max_length=255)
     cargo = models.CharField(max_length=255)
+

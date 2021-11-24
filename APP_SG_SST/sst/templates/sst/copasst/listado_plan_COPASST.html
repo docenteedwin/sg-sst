@@ -1,0 +1,68 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %}   
+   
+   
+<div class="row">
+  <div class="col-md-12">
+
+    <h2>Plan anual COPASST</h2>
+    
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+    <a class="btn btn-success" href="/formulario_plan_copasst/0"> <i class="fa fa-plus-square"></i>   Agregar plan</a>
+        
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                <th>Nombre de la actividad</th>
+                <th>Fecha</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+
+            {% for plan in lista_planes %}
+
+            <tr>
+                <td>{{plan.nombre}}</td>
+                <td>{{plan.fecha}}</td>
+                <td>{{plan.descripcion}}</td>
+                <td>
+                  
+                  <div class="btn-group" role="group" aria-label="btn"></div>
+                    <a class="btn btn-warning" href="/formulario_plan_copasst/{{plan.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+                    <a class="btn btn-danger" href="/eliminar_plan_copasst/{{plan.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                  </div>
+                  
+                </td>
+            
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+            <div class="form-group" role="group" aria-label="btn">      
+              <a class="btn btn-primary" href="/copasst"> <i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+          
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+
+{% endblock %}

@@ -57,16 +57,22 @@ urlpatterns = [
     path('pdf_politicas/<int:id>', views.pdf_politicas, name='pdf_politicas'),
     
     # MODULO COMITES
-    #COPASST
+    
+    # COPASST
     path('copasst', views.listado_copasst, name='copasst'),
     path('formulario_copasst/<int:id>', views.formulario_copasst, name='formulario_copasst'),
+    path('agregar_copasst', views.agregar_copasst, name='agregar_copasst'),
+    path('eliminar_copasst/<int:id>', views.eliminar_copasst, name='eliminar_copasst'),
+    path('plan_copasst', views.listado_plan_copasst, name='plan_copasst'),
+    path('formulario_plan_copasst/<int:id>', views.formulario_plan_copasst, name='formulario_plan_copasst'),
+    path('agregar_plan_copasst', views.agregar_plan_copasst, name='agregar_plan_copasst'),
+    path('eliminar_plan_copasst/<int:id>', views.eliminar_plan_copasst, name='eliminar_plan_copasst'),
 
     #COCOLA
     path('cocola', views.listado_cocola, name='cocola'),
     path('formulario_cocola/<int:id>', views.formulario_cocola, name='formulario_cocola'),
     path('agregar_cocola', views.agregar_cocola, name='agregar_cocola'),
-    path('eliminar_cocola/<int:id>', views.eliminar_cocola, name='eliminar_cocola')
-    
+    path('eliminar_cocola/<int:id>', views.eliminar_cocola, name='eliminar_cocola'),
 ]
 
 if settings.DEBUG:

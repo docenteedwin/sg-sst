@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12">
 
-    <h2>Gestion de usuarios</h2>
+    <h2>COPASST</h2>
     
     </div>
     </div>
@@ -19,7 +19,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
    
-    <form action="/agregar_usuarios" method='POST'>
+    <form action="/agregar_copasst" method='POST'>
 
 {% csrf_token %}    
 
@@ -27,7 +27,7 @@
 
 <div class="form-group">
   <label for="basic-url">Nombre</label><br>
-  <input type="text" class="form-control" name="user_name" value="{{user_name}}" required />
+  <input type="text" class="form-control" name="nombre" value="{{nombre}}" required />
 </div>
 
 
@@ -37,35 +37,35 @@
 
 <div class="form-group">
   <label for="basic-url">Apellido</label><br>
-  <input type="text" class="form-control" name="password" value="{{password}}" required />
+  <input type="text" class="form-control" name="apellido" value="{{apellido}}" required />
 </div>
 
 <br/>
 
 <div class="form-group">
   <label for="basic-url">Cedula</label><br>
-  <input type="text" class="form-control" name="first_surname" value="{{first_surname}}" />
+  <input type="text" class="form-control" name="cedula" value="{{cedula}}" />
 </div>
 
 <br/>
 
 <div class="form-group">
   <label for="basic-url">Email</label><br>
-  <input type="text" class="form-control" name="second_surname" value="{{second_surname}}" />
+  <input type="text" class="form-control" name="email" value="{{email}}" />
 </div>
 
 <br/>
 
 <div class="form-group">
   <label for="basic-url">Telefono</label><br>
-  <input type="text" class="form-control" name="identity_number" value="{{identity_number}}" />
+  <input type="text" class="form-control" name="telefono" value="{{telefono}}" />
 </div>
 
 <br/>
 
 <div class="form-group">
   <label for="basic-url">Cargo</label><br>
-  <select class="form-control" name="activity_status">
+  <select class="form-control" name="cargo">
       <option value="">Seleccione un cargo</option>
       <option value="Presidente">Presidente</option>
       <option value="Secretario">Secretario</option>
@@ -78,7 +78,7 @@
       <div class="form-group" role="group" aria-label="btn">      
         <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>    Guardar</button>
 
-        <a class="btn btn-primary" href="/usuarios"> <i class="fa fa-arrow-left"></i> Regresar</a>
+        <a class="btn btn-primary" href="/copasst"> <i class="fa fa-arrow-left"></i> Regresar</a>
 
       </div>
     
