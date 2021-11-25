@@ -106,9 +106,11 @@
   <label for="basic-url">Rol</label><br>
   <select class="form-control" name="id_rol">
     <option value="">Seleccione un rol</option>
-    {% for rol in lista_roles %}
-      <option value="{{rol.name}}">{{rol.name}}</option>
-    {% endfor %}
+    <option value="administrador">Administrador</option>
+    <option value="encargado">Encargado SG-SST</option>
+    <option value="cocola">COCOLA</option>
+    <option value="copasst">COPASST</option>
+    <option value="brigada de emergencia">Brigada de emergencia (BE)</option>
   </select>
 </div>
 

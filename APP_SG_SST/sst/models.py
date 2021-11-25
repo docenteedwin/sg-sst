@@ -154,4 +154,9 @@ class plan_copasst(models.Model):
     fecha = models.DateField(default=timezone.now())
     descripcion = models.CharField(max_length=255)
     
+class archivos_copasst(models.Model):
+    votacion = models.CharField(max_length=255)
+    nombramiento = models.CharField(max_length=255)
+    tipo_archivo = models.IntegerField()
+
 

@@ -1,0 +1,63 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %}   
+   
+   
+<div class="row">
+  <div class="col-md-12">
+
+    <h2>Acta de conformación y nombramiento COPASST</h2>
+    
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+    <a class="btn btn-success" href="/formulario_nombramiento_copasst/0"> <i class="fa fa-plus-square"></i>   Agregar acta de conformación y nombramiento</a>
+        
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                <th>Archivo</th>
+                <th>Acciones</th>
+            </tr>
+
+            {% for nombre in lista_nombres %}
+
+            <tr>
+                <td><a href="{{nombre.nombramiento}}">DESCARGAR ACTA DE VOTACIÓN</a></td>
+                <td>
+                  
+                  <div class="btn-group" role="group" aria-label="btn"></div>
+                    <a class="btn btn-danger" href="/eliminar_nombramiento_copasst/{{voto.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                  </div>
+                  
+                </td>
+            
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+            <div class="form-group" role="group" aria-label="btn">      
+              <a class="btn btn-primary" href="/copasst"> <i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+          
+        
+    </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+</div>
+
+{% endblock %}

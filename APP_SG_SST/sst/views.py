@@ -161,7 +161,6 @@ def formulario_aliados(request, id):
         if id !=0 : 
             print ("Actualizar registro")
             data_aliado = aliado.objects.get(id=id)
-            data_producto = producto_aliado.objects.get(id=id)
             variables_plantilla = {'id':id,'name':data_aliado.name, 'nit':data_aliado.nit, 'arl':data_aliado.arl, 'pago_seguridad_social':data_aliado.pago_seguridad_social, 'seguridad_producto':data_aliado.seguridad_producto, 'cumplimiento_arl':data_aliado.cumplimiento_arl,'lista_aliados':aliados ,'lista_productos':productos ,'action_text':"Actualizar usuario"}
 
         else:
@@ -515,4 +514,89 @@ def eliminar_plan_copasst(request, id):
     data_plan.delete()
 
     return redirect('/plan_copasst')
+
+def listado_votacion_copasst(request):
+    votos = archivos_copasst.objects.all().filter(tipo_archivo=0)
+
+    return render(request, 'sst/copasst/listado_votacion_COPASST.html', {'lista_votos': votos})
+
+def formulario_votacion_copasst(request, id):
+    votos = archivos_copasst.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_votos = archivos_copasst.objects.get(id=id)
+        variables_plantilla = {'id':id, 'votacion':data_votos.votacion, 'tipo_archivo':data_votos.tipo_archivo, 'lista_votos':votos , 'action_text':"Actualizar votacion"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0, 'votacion':'', 'tipo_archivo':'', 'lista_votos':votos , 'action_text':"Agregar votacion"}
+
+    return render(request, 'sst/copasst/formulario_votacion_COPASST.html', variables_plantilla)
+    
+def agregar_votacion_copasst(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+
+        if request.FILES['votacion']:
+            votacion_file = request.FILES['votacion']
+            fs = FileSystemStorage()
+            filename = fs.save(votacion_file.name, votacion_file)
+            uploaded_file_url_votacion = fs.url(filename)
+                        
+        print(request.POST)
+        nueva_votacion = archivos_copasst(tipo_archivo=request.POST['tipo_archivo'], votacion=uploaded_file_url_votacion)
+        nueva_votacion.save()
+
+    votacion = archivos_copasst.objects.all()
+
+    return redirect('/votacion_copasst')
+
+def eliminar_votacion_copasst(request, id):
+    data_votacion = archivos_copasst.objects.get(id=id)
+    data_votacion.delete()
+    
+    return redirect('/votacion_copasst')
+
+def listado_nombramiento_copasst(request):
+    nombres = archivos_copasst.objects.all().filter(tipo_archivo=1)
+
+    return render(request, 'sst/copasst/listado_nombramiento_COPASST.html', {'lista_nombres': nombres})
+
+def formulario_nombramiento_copasst(request, id):
+    nombres = archivos_copasst.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_nombres = archivos_copasst.objects.get(id=id)
+        variables_plantilla = {'id':id, 'votacion':data_nombres.votacion, 'tipo_archivo':data_nombres.tipo_archivo, 'lista_nombres':nombres , 'action_text':"Actualizar votacion"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0, 'votacion':'', 'tipo_archivo':'', 'lista_nombres':nombres , 'action_text':"Agregar votacion"}
+
+    return render(request, 'sst/copasst/formulario_nombramiento_COPASST.html', variables_plantilla)
+    
+def agregar_nombramiento_copasst(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+
+        if request.FILES['nombramiento']:
+            nombramiento_file = request.FILES['nombramiento']
+            fs = FileSystemStorage()
+            filename = fs.save(nombramiento_file.name, nombramiento_file)
+            uploaded_file_url_nombramiento = fs.url(filename)
+                        
+        print(request.POST)
+        nueva_nombramiento = archivos_copasst(tipo_archivo=request.POST['tipo_archivo'], nombramiento=uploaded_file_url_nombramiento)
+        nueva_nombramiento.save()
+
+    nombramiento = archivos_copasst.objects.all()
+
+    return redirect('/nombramiento_copasst')
+
+def eliminar_nombramiento_copasst(request, id):
+    data_nombramiento = archivos_copasst.objects.get(id=id)
+    data_nombramiento.delete()
+    
+    return redirect('/nombramiento_copasst')
+
 
