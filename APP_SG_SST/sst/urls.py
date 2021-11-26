@@ -67,6 +67,14 @@ urlpatterns = [
     path('formulario_plan_copasst/<int:id>', views.formulario_plan_copasst, name='formulario_plan_copasst'),
     path('agregar_plan_copasst', views.agregar_plan_copasst, name='agregar_plan_copasst'),
     path('eliminar_plan_copasst/<int:id>', views.eliminar_plan_copasst, name='eliminar_plan_copasst'),
+    path('votacion_copasst', views.listado_votacion_copasst, name='votacion_copasst'),
+    path('formulario_votacion_copasst/<int:id>', views.formulario_votacion_copasst, name='formulario_votacion_copasst'),
+    path('agregar_votacion_copasst', views.agregar_votacion_copasst, name='agregar_votacion_copasst'),
+    path('eliminar_votacion_copasst/<int:id>', views.eliminar_votacion_copasst, name='eliminar_votacion_copasst'),
+    path('nombramiento_copasst', views.listado_nombramiento_copasst, name='nombramiento_copasst'),
+    path('formulario_nombramiento_copasst/<int:id>', views.formulario_nombramiento_copasst, name='formulario_nombramiento_copasst'),
+    path('agregar_nombramiento_copasst', views.agregar_nombramiento_copasst, name='agregar_nombramiento_copasst'),
+    path('eliminar_nombramiento_copasst/<int:id>', views.eliminar_nombramiento_copasst, name='eliminar_nombramiento_copasst'),
 
     #COCOLA
     path('cocola', views.listado_cocola, name='cocola'),

@@ -149,7 +149,12 @@ class plan_copasst(models.Model):
     nombre = models.CharField(max_length=255)
     fecha = models.DateField(auto_now=True)
     descripcion = models.CharField(max_length=255)
-    
+
+class archivos_copasst(models.Model):
+    votacion = models.CharField(max_length=255)
+    nombramiento = models.CharField(max_length=255)
+    tipo_archivo = models.IntegerField()
+
 class cocola(models.Model):
     nombre = models.CharField(max_length=255)
     apellido = models.CharField(max_length=255)

@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12">
 
-    <h2>Gestion de productos</h2>
+    <h2>Acta de conformación y nombramiento COPASST</h2>
     
     </div>
     </div>
@@ -19,38 +19,27 @@
 <div class="panel panel-default">
   <div class="panel-body">
    
-    <form action="/agregar_productos" method='POST' enctype="multipart/form-data">
+    <form action="/agregar_nombramiento_copasst" method='POST' enctype="multipart/form-data">
 
 {% csrf_token %}    
 
 <br/>
 
-<input type="hidden" name="aliado" value="{{aliado}}"/>
 
 <input type="hidden" name="id" value="{{id}}"/>
 
-<br/>
+<input type="hidden" name="tipo_archivo" value="1"/>
 
 <div class="form-group">
-  <label for="basic-url">Producto</label><br>
-  <input type="text" class="form-control" name="nombre" value="{{nombre}}" required />
+    <label for="arl">Conformación y nombramiento</label>
+    <input type="file" class="form-control-file" id="nombramiento" name="nombramiento" value="{{nombramiento}}"/>
 </div>
-
-<br/>
-
-<div class="form-group">
-    <label for="arl">Ficha de seguridad</label>
-    <input type="file" class="form-control-file" id="seguridad_producto" name="seguridad_producto" value="{{seguridad_producto}}"/>
-</div>
-
-<br/>
-
 
     <br/>
       <div class="form-group" role="group" aria-label="btn">      
         <button class="btn btn-success" value="{{action_text}}" type="submit"> <i class="fas fa-save"></i>    Guardar</button>
 
-        <a class="btn btn-primary" href="/aliados"> <i class="fa fa-arrow-left"></i> Regresar</a>
+        <a class="btn btn-primary" href="/nombramiento_copasst"> <i class="fa fa-arrow-left"></i> Regresar</a>
 
       </div>
     
