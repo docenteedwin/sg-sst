@@ -73,6 +73,9 @@ urlpatterns = [
     path('formulario_cocola/<int:id>', views.formulario_cocola, name='formulario_cocola'),
     path('agregar_cocola', views.agregar_cocola, name='agregar_cocola'),
     path('eliminar_cocola/<int:id>', views.eliminar_cocola, name='eliminar_cocola'),
+    path('formulario_queja_cocola/<int:id>', views.formulario_quejas_cocola, name='formulario_queja_cocola'),
+    path('agregar_queja', views.agregar_quejas_cocola, name='agregar_queja'),
+
 ]
 
 if settings.DEBUG:

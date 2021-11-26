@@ -25,7 +25,6 @@ class users(models.Model):
     def __str__(self):
         return self.user_name
 
-
 class rol(models.Model):
     name = models.CharField(max_length=255)
 
@@ -36,7 +35,6 @@ class rol(models.Model):
     def __str__(self):
         return self.name
 
-
 class permissions(models.Model):
     name = models.CharField(max_length=255)
 
@@ -46,7 +44,6 @@ class permissions(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class permissions_role(models.Model):
     id_permission = models.IntegerField()
@@ -128,7 +125,6 @@ class producto_aliado(models.Model):
         
     def __str__(self):
         return self.nombre
-    
 
 class documento(models.Model):
     title = models.CharField(max_length = 200)
@@ -151,7 +147,7 @@ class copasst(models.Model):
 
 class plan_copasst(models.Model):
     nombre = models.CharField(max_length=255)
-    fecha = models.DateField(default=timezone.now())
+    fecha = models.DateField(auto_now=True)
     descripcion = models.CharField(max_length=255)
     
 class cocola(models.Model):
@@ -162,3 +158,7 @@ class cocola(models.Model):
     telefono = models.CharField(max_length=255)
     cargo = models.CharField(max_length=255)
 
+class quejas_cocola(models.Model):
+    miembro = models.CharField(max_length=255)
+    descripcion = models.CharField(max_length=255)
+    fechaInscripcion = models.DateField(auto_now=True)

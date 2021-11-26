@@ -10,6 +10,7 @@
 <div class="row">
     <div class="col-md-12">
         <a class="btn btn-success" href="/formulario_cocola/0"> <i class="fa fa-plus-square"></i>   Agregar usuario</a>
+        <a class="btn btn-success" href="/formulario_queja_cocola/0"> <i class="fa fa-plus-square"></i>   Agregar queja</a>
     </div>
 </div>
 <div class="row">
@@ -32,6 +33,37 @@
                 <td>{{miembro.email}}</td>
                 <td>{{miembro.telefono}}</td>
                 <td>{{miembro.cargo}}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="btn"></div>
+                        <a class="btn btn-warning" href="/formulario_cocola/{{miembro.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+                        <a class="btn btn-danger" href="/eliminar_cocola/{{miembro.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Quejas</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Miembro</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+            {% for queja in lista_quejas %}
+            <tr>
+                <td>{{queja.miembro}}</td>
+                <td>{{queja.descripcion}}</td>
+                <td>{{queja.fechaInscripcion}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="btn"></div>
                         <a class="btn btn-warning" href="/formulario_cocola/{{miembro.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>

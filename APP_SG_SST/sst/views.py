@@ -520,8 +520,9 @@ def eliminar_plan_copasst(request, id):
 #  COCOLA
 def listado_cocola(request):
     miembros = cocola.objects.all()
-
-    return render(request, 'sst/listado_COCOLA.html', {'lista_miembros':miembros})
+    quejas = quejas_cocola.objects.all()
+    
+    return render(request, 'sst/cocola/listado_COCOLA.html', {'lista_miembros':miembros, 'lista_quejas':quejas})
 
 def formulario_cocola(request, id):
     miembros = cocola.objects.all()
@@ -529,12 +530,11 @@ def formulario_cocola(request, id):
         print ("Actualizar registro")
         data_miembro = cocola.objects.get(id=id)
         variables_plantilla = {'id':id,'nombre':data_miembro.nombre, 'apellido':data_miembro.apellido, 'cedula':data_miembro.cedula, 'email':data_miembro.email, 'telefono':data_miembro.telefono, 'cargo':data_miembro.cargo, 'lista_miembros':miembros , 'action_text':"Actualizar miembro"}
-
     else:
         print ("Nuevo registro")
         variables_plantilla = {'id':0,'nombre':'', 'apellido':'', 'cedula':'', 'email':'', 'telefono':'', 'cargo':'', 'lista_miembros':miembros , 'action_text':"Agregar miembro"}
 
-    return render(request, 'sst/formulario_COCOLA.html', variables_plantilla)
+    return render(request, 'sst/cocola/formulario_COCOLA.html', variables_plantilla)
 
 def agregar_cocola(request):
     if request.POST['id'] == '0':
@@ -560,4 +560,35 @@ def agregar_cocola(request):
 def eliminar_cocola(request, id):
     data_cocola = cocola.objects.get(id=id)
     data_cocola.delete()
+    return redirect('/cocola')
+
+def listado_quejas_cocola(request):
+    quejas = quejas_cocola.objects.all()
+
+    return render(request, 'sst/cocola/listado_COCOLA.html', {'lista_quejas':quejas})
+
+def formulario_quejas_cocola(request, id):
+    quejas = quejas_cocola.objects.all()
+    if id != 0:
+        data_queja =quejas_cocola.objects.get(id=id)
+        variables_plantilla = {'id':id,'miembro':data_queja.miembro, 'descripcion':data_queja.descripcion, 'fechaInscripcion':data_queja.fechaInscripcion, 'lista_quejas':quejas , 'action_text':"Actualizar queja"}
+    else:
+        variables_plantilla = {'id':0,'miembro':'', 'descripcion':'', 'fechaInscripcion':'', 'lista_quejas':quejas , 'action_text':"Agregar queja"}
+    return render(request, 'sst/cocola/formulario_quejas_COCOLA.html', variables_plantilla)
+
+def agregar_quejas_cocola(request):
+    if request.POST['id'] == '0':
+        nuevo_queja = quejas_cocola(miembro=request.POST['miembro'], descripcion=request.POST['descripcion'], fechaInscripcion=request.POST['fechaInscripcion'])
+        nuevo_queja.save()
+
+    else:
+        print("Actualiza")
+        data_queja = quejas_cocola.objects.get(id=request.POST['id'])
+        data_queja.miembro = request.POST['miembro']
+        data_queja.descripcion = request.POST['descripcion']   
+        data_queja.fechaInscripcion = request.POST['fechaInscripcion']
+        data_queja.save()
+
+    quejas = quejas_cocola.objects.all()
+
     return redirect('/cocola')
