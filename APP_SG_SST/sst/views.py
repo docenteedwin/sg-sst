@@ -40,6 +40,11 @@ def acceder(request):
         request.session['login_error'] = "Correo y/o clave invalidos"
         return redirect('/login')
 
+def logout(request):
+    request.session['loggeado'] = 0
+    del request.session['login_error']
+    return redirect('/login')
+
 # DOCUMENTACION
 
 # RIESGOS Y EMERGENCIA
@@ -418,7 +423,7 @@ def pdf_politicas(request, id,*args, **kwargs):
             'comentarios': plts.comentarios,
             'firma': plts.firma,
             'fecha': plts.fecha
-        }
+            }
     pdf = render_to_pdf('sst/pdf_politicas.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
     #return render(request, 'sst/pdf_politicas.html', {'politicas': plts})
@@ -525,11 +530,11 @@ def formulario_votacion_copasst(request, id):
     if id !=0 : 
         print ("Actualizar registro")
         data_votos = archivos_copasst.objects.get(id=id)
-        variables_plantilla = {'id':id, 'votacion':data_votos.votacion, 'tipo_archivo':data_votos.tipo_archivo, 'lista_votos':votos , 'action_text':"Actualizar votacion"}
+        variables_plantilla = {'id':id, 'votacion':data_votos.votacion, 'tipo_archivo':data_votos.tipo_archivo,'fecha':data_votos.fecha, 'lista_votos':votos , 'action_text':"Actualizar votacion"}
 
     else:
         print ("Nuevo registro")
-        variables_plantilla = {'id':0, 'votacion':'', 'tipo_archivo':'', 'lista_votos':votos , 'action_text':"Agregar votacion"}
+        variables_plantilla = {'id':0, 'votacion':'', 'tipo_archivo':'', 'fecha':'', 'lista_votos':votos , 'action_text':"Agregar votacion"}
 
     return render(request, 'sst/copasst/formulario_votacion_COPASST.html', variables_plantilla)
     
@@ -544,7 +549,7 @@ def agregar_votacion_copasst(request):
             uploaded_file_url_votacion = fs.url(filename)
                         
         print(request.POST)
-        nueva_votacion = archivos_copasst(tipo_archivo=request.POST['tipo_archivo'], votacion=uploaded_file_url_votacion)
+        nueva_votacion = archivos_copasst(tipo_archivo=request.POST['tipo_archivo'], fecha=request.POST['fecha'], votacion=uploaded_file_url_votacion)
         nueva_votacion.save()
 
     votacion = archivos_copasst.objects.all()
@@ -567,11 +572,11 @@ def formulario_nombramiento_copasst(request, id):
     if id !=0 : 
         print ("Actualizar registro")
         data_nombres = archivos_copasst.objects.get(id=id)
-        variables_plantilla = {'id':id, 'votacion':data_nombres.votacion, 'tipo_archivo':data_nombres.tipo_archivo, 'lista_nombres':nombres , 'action_text':"Actualizar votacion"}
+        variables_plantilla = {'id':id, 'votacion':data_nombres.votacion, 'tipo_archivo':data_nombres.tipo_archivo, 'fecha':data_nombres.fecha, 'lista_nombres':nombres , 'action_text':"Actualizar votacion"}
 
     else:
         print ("Nuevo registro")
-        variables_plantilla = {'id':0, 'votacion':'', 'tipo_archivo':'', 'lista_nombres':nombres , 'action_text':"Agregar votacion"}
+        variables_plantilla = {'id':0, 'votacion':'', 'tipo_archivo':'', 'fecha':'', 'lista_nombres':nombres , 'action_text':"Agregar votacion"}
 
     return render(request, 'sst/copasst/formulario_nombramiento_COPASST.html', variables_plantilla)
     
@@ -586,7 +591,7 @@ def agregar_nombramiento_copasst(request):
             uploaded_file_url_nombramiento = fs.url(filename)
                         
         print(request.POST)
-        nueva_nombramiento = archivos_copasst(tipo_archivo=request.POST['tipo_archivo'], nombramiento=uploaded_file_url_nombramiento)
+        nueva_nombramiento = archivos_copasst(tipo_archivo=request.POST['tipo_archivo'], fecha=request.POST['fecha'], nombramiento=uploaded_file_url_nombramiento)
         nueva_nombramiento.save()
 
     nombramiento = archivos_copasst.objects.all()
@@ -598,5 +603,48 @@ def eliminar_nombramiento_copasst(request, id):
     data_nombramiento.delete()
     
     return redirect('/nombramiento_copasst')
+
+def listado_reunion_copasst(request):
+    reuniones = reuniones_copasst.objects.all()
+
+    return render(request, 'sst/copasst/listado_reunion_COPASST.html', {'lista_reuniones': reuniones})
+
+def formulario_reunion_copasst(request, id):
+    reuniones = reuniones_copasst.objects.all()
+    if id !=0 : 
+        print ("Actualizar registro")
+        data_reuniones = reuniones_copasst.objects.get(id=id)
+        variables_plantilla = {'id':id, 'acta':data_reuniones.acta, 'fecha':data_reuniones.fecha, 'lista_reuniones':reuniones , 'action_text':"Actualizar acta"}
+
+    else:
+        print ("Nuevo registro")
+        variables_plantilla = {'id':0, 'acta':'', 'fecha':'', 'lista_reuniones':reuniones , 'action_text':"Agregar acta"}
+
+    return render(request, 'sst/copasst/formulario_reunion_COPASST.html', variables_plantilla)
+    
+def agregar_reunion_copasst(request):
+    if request.POST['id'] == '0':
+        print("Nueva")
+
+        if request.FILES['acta']:
+            acta_file = request.FILES['acta']
+            fs = FileSystemStorage()
+            filename = fs.save(acta_file.name, acta_file)
+            uploaded_file_url_acta = fs.url(filename)
+                        
+        print(request.POST)
+        nueva_reunion = reuniones_copasst(fecha=request.POST['fecha'], acta=uploaded_file_url_acta)
+        nueva_reunion.save()
+
+    reunion = reuniones_copasst.objects.all()
+
+    return redirect('/reunion_copasst')
+
+def eliminar_reunion_copasst(request, id):
+    data_reunion = reuniones_copasst.objects.get(id=id)
+    data_reunion.delete()
+    
+    return redirect('/reunion_copasst')
+
 
 
