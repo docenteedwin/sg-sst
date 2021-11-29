@@ -56,7 +56,7 @@ ROOT_URLCONF = 'APP_SG_SST.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["views"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
