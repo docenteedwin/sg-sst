@@ -147,13 +147,18 @@ class copasst(models.Model):
 
 class plan_copasst(models.Model):
     nombre = models.CharField(max_length=255)
-    fecha = models.DateField(auto_now=True)
+    fecha = models.DateField()
     descripcion = models.CharField(max_length=255)
     
 class archivos_copasst(models.Model):
     votacion = models.CharField(max_length=255)
     nombramiento = models.CharField(max_length=255)
     tipo_archivo = models.IntegerField()
+    fecha = models.DateField()
+
+class reuniones_copasst(models.Model):
+    acta = models.CharField(max_length=255)
+    fecha = models.DateField()
 
 class cocola(models.Model):
     nombre = models.CharField(max_length=255)

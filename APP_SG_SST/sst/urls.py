@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('login', views.login, name='login'),
     path('acceder', views.acceder, name='acceder'),
+    path('logout', views.logout, name='logout'),
 
     # DOCUMENTACION
 
@@ -75,6 +76,10 @@ urlpatterns = [
     path('formulario_nombramiento_copasst/<int:id>', views.formulario_nombramiento_copasst, name='formulario_nombramiento_copasst'),
     path('agregar_nombramiento_copasst', views.agregar_nombramiento_copasst, name='agregar_nombramiento_copasst'),
     path('eliminar_nombramiento_copasst/<int:id>', views.eliminar_nombramiento_copasst, name='eliminar_nombramiento_copasst'),
+    path('reunion_copasst', views.listado_reunion_copasst, name='reunion_copasst'),
+    path('formulario_reunion_copasst/<int:id>', views.formulario_reunion_copasst, name='formulario_reunion_copasst'),
+    path('agregar_reunion_copasst', views.agregar_reunion_copasst, name='agregar_reunion_copasst'),
+    path('eliminar_reunion_copasst/<int:id>', views.eliminar_reunion_copasst, name='eliminar_reunion_copasst'),
 
     #COCOLA
     path('cocola', views.listado_cocola, name='cocola'),
