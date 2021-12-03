@@ -23,8 +23,11 @@ Instalar psycopg2   sudo apt install python3-dev libpq-dev
  1.7 Activate
  1.8  cd..
  1.9 cd APP_SG_SST
-1.10 python manage.py migrate
-1.11 python manage.py makemigrations
+ 1.10 Se debe instalar las dependencias 
+      pip install django
+      pip install xhtml2pdf
+1.11 python manage.py migrate
+1.12 python manage.py makemigrations
 
 2.Para ingresar al localhost se debe realizar el siguiente proceso:
   2.1 Se abre el proyecto clonado o descargado del repositorio 
@@ -37,7 +40,7 @@ Instalar psycopg2   sudo apt install python3-dev libpq-dev
   2.7 python manage.py runserver
   2.8 abre el siguiente link de ingreso  http://127.0.0.1:8000/ 
 
-3.Ingresar con email y contraseña, para poder ver el panel donde podremos iniciar sesión a la aplicación.  
+3.Ingresar usu<rio (admin@admin.com) y contraseña (admin), para poder ver el panel donde podremos iniciar sesión a la aplicación.  
 
 4. Nos ubicamos en la parte izquierda superior donde encontramos los módulos que nos permiten navegar por las diferentes opciones que tiene la aplicación la cual cuenta con los siguientes módulos y dentro de cada módulo su respectivo proceso:
 
