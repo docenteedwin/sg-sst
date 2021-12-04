@@ -56,6 +56,22 @@ urlpatterns = [
     path('agregar_politicas', views.agregar_politicas, name='agregar_politicas'),
     path('eliminar_politicas/<int:id>', views.eliminar_politicas, name='eliminar_politicas'),
     path('pdf_politicas/<int:id>', views.pdf_politicas, name='pdf_politicas'),
+
+    # COMPROMISOS
+
+    path('b_compromisos', views.ver_compromisos, name='compromisos'),
+    path('formulario_compromisos/<int:id>', views.formulario_compromisos, name='formulario_compromisos'),
+    path('agregar_compromisos', views.agregar_compromisos, name='agregar_compromisos'),
+    path('eliminar_compromisos/<int:id>', views.eliminar_compromisos, name='eliminar_compromisos'),
+    path('pdf_compromisos/<int:id>', views.pdf_compromisos, name='pdf_compromisos'),
+    
+    # RESPONSABILIDADES
+
+    path('b_responsabilidades', views.ver_responsabilidades, name='responsabilidades'),
+    path('formulario_responsabilidades/<int:id>', views.formulario_responsabilidades, name='formulario_responsabilidades'),
+    path('agregar_responsabilidades', views.agregar_responsabilidades, name='agregar_responsabilidades'),
+    path('eliminar_responsabilidades/<int:id>', views.eliminar_responsabilidades, name='eliminar_responsabilidades'),
+    path('pdf_responsabilidades/<int:id>', views.pdf_responsabilidades, name='pdf_responsabilidades'),
     
     # MODULO COMITES
     

@@ -723,4 +723,139 @@ def agregar_quejas_cocola(request):
 
     return redirect('/cocola')
 
+#COMPROMISOS Y RESPONSABILIDADES
+
+def formulario_compromisos(request,id):
+    if id !=0 : 
+        compromisos = Compromisos.objects.get(id=id)
+        fechaFormat = date.isoformat(compromisos.fecha)
+        variables_plantilla = {'id':id,'empresa':compromisos.empresa, 'nit':compromisos.nit, 'compromisos':compromisos.compromisos, 'firma':compromisos.firma, 'fecha':fechaFormat, 'firma_img':compromisos.firma_img}
+    else:
+        variables_plantilla = {'id':0,'empresa':'', 'nit':'', 'compromisos':'', 'firma':'', 'fecha':'','firma_img':''}
+
+    return render(request, 'sst/formulario_compromisos.html', variables_plantilla)
+
+def agregar_compromisos(request):
+    if request.POST['id'] == '0':
+
+        if request.FILES['firma_img']:
+            firma_file = request.FILES['firma_img']
+            fs = FileSystemStorage()
+            filename = fs.save(firma_file.name, firma_file)
+            uploaded_file_url_firma= fs.url(filename)
+
+        nuevo_compromiso = Compromisos(empresa=request.POST['empresa'], nit=request.POST['nit'], compromisos=request.POST['compromisos'],firma=request.POST['firma'], fecha=request.POST['fecha'],firma_img = uploaded_file_url_firma)
+        nuevo_compromiso.save()
+
+    else:
+        compromisos = Compromisos.objects.get(id=request.POST['id'])
+
+        firma_file = request.FILES['firma_img']
+        fs = FileSystemStorage()
+        filename = fs.save(firma_file.name, firma_file)
+        uploaded_file_url_firma= fs.url(filename)
+
+        compromisos.empresa = request.POST['empresa']
+        compromisos.nit = request.POST['nit']   
+        compromisos.compromisos = request.POST['compromisos']
+        compromisos.firma = request.POST['firma']
+        compromisos.fecha = request.POST['fecha']
+        compromisos.uploaded_file_url_firma = request.FILES['firma_img']
+        compromisos.save()
+
+    plts = Compromisos.objects.all()
+    return render(request, 'sst/compromisos.html', {'compromisos': plts})
+
+def eliminar_compromisos(request, id):
+    compromiso = Compromisos.objects.filter(id=id).delete()
+    plts = Compromisos.objects.all()
+    # return render(request, 'sst/compromisos.html', {'compromisos': plts})
+    return redirect('/b_compromisos')
+
+def ver_compromisos(request):
+    plts = Compromisos.objects.all()
+    plts2 = Responsabilidades.objects.all()
+    return render(request, 'sst/compromisos.html', {'compromisos': plts,'responsabilidades': plts2})
+
+def pdf_compromisos(request, id,*args, **kwargs):
+    plts = Compromisos.objects.get(id=id)
+    data = {
+            'empresa': plts.empresa,
+            'nit': plts.nit,
+            'compromisos': plts.compromisos,            
+            'firma': plts.firma,
+            'fecha': plts.fecha,
+            'firma_img':plts.firma_img
+        }
+    pdf = render_to_pdf('sst/pdf_compromisos.html', data)
+    return HttpResponse(pdf, content_type='application/pdf')
+
+### RESPONSABILIDADES
+
+def formulario_responsabilidades(request,id):
+    if id !=0 : 
+        responsabilidades = Responsabilidades.objects.get(id=id)
+        fechaFormat = date.isoformat(responsabilidades.fecha)
+        variables_plantilla = {'id':id,'empresa':responsabilidades.empresa, 'nit':responsabilidades.nit, 'responsabilidades':responsabilidades.responsabilidades, 'firma':responsabilidades.firma, 'fecha':fechaFormat, 'firma_img':responsabilidades.firma_img}
+    else:
+        variables_plantilla = {'id':0,'empresa':'', 'nit':'', 'responsabilidades':'', 'firma':'', 'fecha':'','firma_img':''}
+
+    return render(request, 'sst/formulario_responsabilidades.html', variables_plantilla)
+
+def agregar_responsabilidades(request):
+    if request.POST['id'] == '0':
+
+        if request.FILES['firma_img']:
+            firma_file = request.FILES['firma_img']
+            fs = FileSystemStorage()
+            filename = fs.save(firma_file.name, firma_file)
+            uploaded_file_url_firma= fs.url(filename)
+
+        nueva_responsabilidad = Responsabilidades(empresa=request.POST['empresa'], nit=request.POST['nit'], responsabilidades=request.POST['responsabilidades'],firma=request.POST['firma'], fecha=request.POST['fecha'],firma_img = uploaded_file_url_firma)
+        nueva_responsabilidad.save()
+
+    else:
+        data_responsabilidades = Responsabilidades.objects.get(id = request.POST['id'])
+
+        firma_file = request.FILES['firma_img']
+        fs = FileSystemStorage()
+        filename = fs.save(firma_file.name, firma_file)
+        uploaded_file_url_firma = fs.url(filename)
+
+        # data_responsabilidades = Responsabilidades.objects.get(id=request.POST['id'])
+        data_responsabilidades.empresa = request.POST['empresa']
+        data_responsabilidades.nit = request.POST['nit']   
+        data_responsabilidades.responsabilidades = request.POST['responsabilidades']
+        data_responsabilidades.firma = request.POST['firma']
+        data_responsabilidades.fecha = request.POST['fecha']
+        data_responsabilidades.uploaded_file_url_firma = request.FILES['firma_img']
+        data_responsabilidades.save()
+
+    plts = Responsabilidades.objects.all()
+    # return render(request, 'sst/responsabilidades.html', {'responsabilidades': plts})
+    return redirect('/b_compromisos')
+
+def eliminar_responsabilidades(request, id):
+    data_responsabilidades = Responsabilidades.objects.filter(id=id).delete()
+    plts = Responsabilidades.objects.all()
+    # return render(request, 'sst/responsabilidades.html', {'responsabilidades': plts})
+    return redirect('/b_compromisos')
+
+def ver_responsabilidades(request):
+    plts = Responsabilidades.objects.all()
+    return render(request, 'sst/responsabilidades.html', {'responsabilidades': plts})
+
+def pdf_responsabilidades(request, id,*args, **kwargs):
+    plts = Responsabilidades.objects.get(id=id)
+    print(os.system('dir'))
+    data = {
+            'empresa': plts.empresa,
+            'nit': plts.nit,
+            'responsabilidades': plts.responsabilidades,            
+            'firma': plts.firma,
+            'fecha': plts.fecha,
+            'firma_img':plts.firma_img
+        }
+    pdf = render_to_pdf('sst/pdf_responsabilidades.html', data)
+    return HttpResponse(pdf, content_type='application/pdf')
 

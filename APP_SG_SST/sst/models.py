@@ -172,3 +172,35 @@ class quejas_cocola(models.Model):
     miembro = models.CharField(max_length=255)
     descripcion = models.CharField(max_length=255)
     fechaInscripcion = models.DateField(auto_now=True)
+
+#Compromisos y responsabilidades del SG-SST
+
+class Compromisos(models.Model):
+    empresa = models.CharField(max_length=100)
+    nit = models.CharField(max_length=20)
+    compromisos = models.TextField()
+    firma = models.CharField(max_length=30)
+    fecha = models.DateField(auto_now_add=True)
+    firma_img = models.ImageField(upload_to = "firmas", null=True)
+
+    class Meta:
+        verbose_name = "Compromiso"
+        verbose_name_plural = "Compromisos"
+
+    def __str__(self):
+        return self.empresa
+
+class Responsabilidades(models.Model):
+    empresa = models.CharField(max_length=100)
+    nit = models.CharField(max_length=20)
+    responsabilidades = models.TextField()
+    firma = models.CharField(max_length=30)
+    fecha = models.DateField(auto_now_add=True)
+    firma_img = models.ImageField(upload_to = "firmas", null=True)
+
+    class Meta:
+        verbose_name = "Responsabilidad"
+        verbose_name_plural = "Responsabilidades"
+
+    def __str__(self):
+        return self.empresa

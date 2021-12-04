@@ -1,0 +1,75 @@
+{% extends 'sst/dashboard.html' %}
+{% block content %}   
+<div class="row">
+</div>
+<div class="btn-group" role="group" aria-label="btn">
+    <a class="btn btn-success" href="/formulario_compromisos/0"> <i class="fa fa-plus-square"></i>   Agregar Compromisos</a>
+    <a class="btn btn-success" href="/formulario_responsabilidades/0"> <i class="fa fa-plus-square"></i>   Agregar Responsabilidades</a>
+</div>
+</div>
+</div> 
+<br/>
+<div class="col-md-12">
+    <h2>Compromisos SG-SST</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Nit</th>
+                <th>Empresa</th>
+                <th>Firma</th>
+                <th>Fecha</th>
+            </tr>
+        {% for item in compromisos %}
+            <tr>
+                <td>{{item.nit}}</td>
+                <td>{{item.empresa}}</td>
+                <td>{{item.firma}}</td>
+                <td>{{item.fecha}}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="btn">
+                        <a class="btn btn-warning" href="/formulario_compromisos/{{item.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+                        <a class="btn btn-danger" href="/eliminar_compromisos/{{item.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                        <a class="btn btn-info" href="/pdf_compromisos/{{item.id}}"><i class="fas fa-file-pdf"></i> Generar Archivo</a>
+                    </div>               
+                </td>
+            </tr>
+        {% endfor %}  
+        </table>   
+    </div>
+</div>
+
+<br/>
+
+<div class="col-md-12">
+    <h2>Responsabilidades SG-SST</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Nit</th>
+                <th>Empresa</th>
+                <th>Firma</th>
+                <th>Fecha</th>
+            </tr>
+        {% for item in responsabilidades %}
+            <tr>
+                <td>{{item.nit}}</td>
+                <td>{{item.empresa}}</td>
+                <td>{{item.firma}}</td>
+                <td>{{item.fecha}}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="btn"></div>
+                        <a class="btn btn-warning" href="/formulario_responsabilidades/{{item.id}}"> <i class="fa fa-plus-square"></i>   Actualizar</a>
+                        <a class="btn btn-danger" href="/eliminar_responsabilidades/{{item.id}}"> <i class="fa fa-trash"></i>   Eliminar</a>
+                        <a class="btn btn-info" href="/pdf_responsabilidades/{{item.id}}"><i class="fas fa-file-pdf"></i> Generar Archivo</a>
+                    </div>               
+                </td>
+            </tr>
+        {% endfor %}  
+        </table>   
+    </div>
+</div>
+{% endblock %}
